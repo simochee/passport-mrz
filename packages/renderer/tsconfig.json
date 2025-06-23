@@ -1,0 +1,10 @@
+{
+	"extends": ["@tsconfig/node24", "@tsconfig/node-ts"],
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"lib": ["DOM"]
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
+}

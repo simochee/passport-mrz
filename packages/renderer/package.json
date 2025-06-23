@@ -7,9 +7,12 @@
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs",
-			"types": "./dist/index.d.ts"
+			"browser": "./dist/browser.mjs",
+			"node": "./dist/node.mjs",
+			"import": "./dist/node.mjs",
+			"require": "./dist/node.cjs",
+			"types": "./dist/types.d.ts",
+			"default": "./dist/node.mjs"
 		}
 	},
 	"files": [
@@ -20,7 +23,18 @@
 		"dev": "unbuild --stub"
 	},
 	"devDependencies": {
-		"unbuild": "^3.5.0",
-		"typescript": "^5.8.3"
+		"@commitlint/config-conventional": "^19.8.1",
+		"@tsconfig/node-ts": "^23.6.1",
+		"@tsconfig/node24": "^24.0.1",
+		"@types/node": "^24.0.3",
+		"typescript": "^5.8.3",
+		"unbuild": "^3.5.0"
+	},
+	"dependencies": {
+		"@simochee/passport-mrz-builder": "workspace:*",
+		"canvas": "^2.11.2"
+	},
+	"peerDependencies": {
+		"canvas": "^2.11.2"
 	}
 }
