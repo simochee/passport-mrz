@@ -40,11 +40,8 @@ export const formatName = (
 		return formatField(cleanPrimary, 39);
 	}
 
-	// Reserve space for: primary + "  " (2 spaces) + at least 1 char of secondary
-	// So maximum primary length is 39 - 2 - 1 = 36 characters
-	const maxPrimaryLength = 36;
-	const truncatedPrimary = cleanPrimary.substring(0, maxPrimaryLength);
-	const remainingLength = 39 - truncatedPrimary.length - 2; // 2 for the double space separator
+	const truncatedPrimary = cleanPrimary.substring(0, 36);
+	const remainingLength = 39 - truncatedPrimary.length - 2;
 	const truncatedSecondary = cleanSecondary.substring(0, remainingLength);
 
 	return formatField(`${truncatedPrimary}  ${truncatedSecondary}`, 39);
