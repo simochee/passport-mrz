@@ -42,7 +42,7 @@
 - Vite: ビルドツール
 
 ### NPMモジュール
-- @simochee/passport-mrz-generator: MRZ生成ライブラリ（tsupでビルド）
+- @simochee/passport-mrz-builder: MRZ生成ライブラリ（tsupでビルド）
 - @simochee/passport-mrz-renderer: 画像生成ライブラリ（tsupでビルド）
   - ブラウザとNode.js両対応
   - パラメータでPNG/SVG選択可能
