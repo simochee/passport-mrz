@@ -17,6 +17,7 @@ import { formatName, formatDate, formatField } from "./formatter";
 export const buildMrzLines = (input: Input): [string, string] => {
   const line1 =
     input.documentType +
+    '<' +
     formatField(input.issuingState, 3) +
     formatName(input.primaryIdentifier, input.secondaryIdentifier);
 

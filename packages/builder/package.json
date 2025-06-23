@@ -17,10 +17,12 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "dev": "unbuild --stub"
+    "dev": "unbuild --stub",
+    "test": "vitest"
   },
   "devDependencies": {
     "unbuild": "^3.5.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   }
 }
