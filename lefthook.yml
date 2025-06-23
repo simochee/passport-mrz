@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  jobs:
+    biome:
+      glob: "*.{js,ts,jsx,tsx,json,jsonc}"
+      run: npx biome check --write {staged_files}
+      stage_fixed: true
+
+pre-push:
+  jobs:
+    biome:
+      run: npx biome check --error-on-warnings
