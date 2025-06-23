@@ -5,10 +5,6 @@ pre-commit:
       run: npx biome check --write --unsafe {staged_files}
       stage_fixed: true
 
-commit-msg:
-  jobs:
-    - run: npx commitlint --edit {1}
-
 pre-push:
   jobs:
     - run: npx biome check --error-on-warnings
