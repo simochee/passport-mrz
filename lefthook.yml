@@ -1,17 +1,14 @@
 pre-commit:
   parallel: true
   jobs:
-    biome:
-      glob: "*.{js,ts,jsx,tsx,json,jsonc}"
+    - glob: "*.{js,ts,jsx,tsx,json,jsonc}"
       run: npx biome check --write {staged_files}
       stage_fixed: true
 
 commit-msg:
   jobs:
-    commitlint:
-      run: npx commitlint --edit {1}
+    - run: npx commitlint --edit {1}
 
 pre-push:
   jobs:
-    biome:
-      run: npx biome check --error-on-warnings
+    - run: npx biome check --error-on-warnings
