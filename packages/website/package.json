@@ -18,6 +18,7 @@
 	},
 	"dependencies": {
 		"@simochee/passport-mrz-builder": "workspace:*",
+		"ocrb-webfont": "workspace:*",
 		"@tanstack/react-form": "^1.12.3",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0"
