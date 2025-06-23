@@ -6,22 +6,22 @@ import { formatName, formatDate, formatField } from "./formatter";
  * Builds MRZ (Machine Readable Zone) lines for passport documents.
  * 
  * Generates two 44-character lines according to TD3 format specification:
- * - Line 1: Document type, country code, and formatted names
- * - Line 2: Passport number, nationality, dates, personal number, and check digits
+ * - Line 1: Document type, issuing state, and formatted identifiers
+ * - Line 2: Document number, nationality, dates, personal number, and check digits
  * 
  * All check digits are calculated according to ICAO 9303 standard.
  * 
- * @param input - The passport information to encode in MRZ format
+ * @param input - The passport information to encode in MRZ format using ICAO 9303 field names
  * @returns A tuple containing [line1, line2] of the MRZ
  */
 export const buildMrzLines = (input: Input): [string, string] => {
   const line1 =
-    "P" +
-    formatField(input.countryCode, 3) +
-    formatName(input.surname, input.givenNames);
+    input.documentType +
+    formatField(input.issuingState, 3) +
+    formatName(input.primaryIdentifier, input.secondaryIdentifier);
 
-  const passportNo = formatField(input.passportNo, 9);
-  const passportCheckDigit = calculateCheckDigit(passportNo);
+  const documentNumber = formatField(input.documentNumber, 9);
+  const documentCheckDigit = calculateCheckDigit(documentNumber);
 
   const nationality = formatField(input.nationality, 3);
   const birthDate = formatDate(input.dateOfBirth);
@@ -31,30 +31,30 @@ export const buildMrzLines = (input: Input): [string, string] => {
   const expiryDate = formatDate(input.dateOfExpiry);
   const expiryCheckDigit = calculateCheckDigit(expiryDate);
 
-  const personalNo = formatField(input.personalNo, 14);
-  const personalCheckDigit = calculateCheckDigit(personalNo);
+  const personalNumber = formatField(input.personalNumber || '', 14);
+  const personalCheckDigit = calculateCheckDigit(personalNumber);
 
   const compositeData =
-    passportNo +
-    passportCheckDigit +
+    documentNumber +
+    documentCheckDigit +
     birthDate +
     birthCheckDigit +
     expiryDate +
     expiryCheckDigit +
-    personalNo +
+    personalNumber +
     personalCheckDigit;
   const compositeCheckDigit = calculateCheckDigit(compositeData);
 
   const line2 =
-    passportNo +
-    passportCheckDigit +
+    documentNumber +
+    documentCheckDigit +
     nationality +
     birthDate +
     birthCheckDigit +
     sex +
     expiryDate +
     expiryCheckDigit +
-    personalNo +
+    personalNumber +
     personalCheckDigit +
     compositeCheckDigit;
 

@@ -1,19 +1,19 @@
 /**
  * Formats names for MRZ according to ICAO 9303 specification.
  * 
- * Combines surname and given names with proper separators:
- * - Surname is followed by two '<' characters
- * - Given names are separated by single '<' characters
+ * Combines primary and secondary identifiers with proper separators:
+ * - Primary identifier is followed by two '<' characters
+ * - Secondary identifiers are separated by single '<' characters
  * - Result is padded to 39 characters with '<' and truncated if longer
  * 
- * @param surname - Primary identifier (family name)
- * @param givenNames - Secondary identifiers (given names, space-separated)
+ * @param primaryIdentifier - Primary identifier (surname/family name)
+ * @param secondaryIdentifier - Secondary identifier (given names, space-separated)
  * @returns Formatted name string (39 characters)
  */
-export const formatName = (surname: string, givenNames: string): string => {
-  const cleanSurname = surname.toUpperCase().replace(/[^A-Z]/g, '');
-  const cleanGivenNames = givenNames.toUpperCase().replace(/[^A-Z\s]/g, '').replace(/\s+/g, '<');
-  return `${cleanSurname}<<${cleanGivenNames}`.padEnd(39, '<').substring(0, 39);
+export const formatName = (primaryIdentifier: string, secondaryIdentifier: string): string => {
+  const cleanPrimary = primaryIdentifier.toUpperCase().replace(/[^A-Z]/g, '');
+  const cleanSecondary = secondaryIdentifier.toUpperCase().replace(/[^A-Z\s]/g, '').replace(/\s+/g, '<');
+  return `${cleanPrimary}<<${cleanSecondary}`.padEnd(39, '<').substring(0, 39);
 };
 
 /**

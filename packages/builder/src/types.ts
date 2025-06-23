@@ -1,30 +1,26 @@
 /**
  * Input data for generating passport MRZ (Machine Readable Zone).
- * Follows TD3 format specification for passport documents.
+ * Follows TD3 format specification for passport documents according to ICAO 9303 standard.
  */
 export type Input = {
-  /** Document type identifier (typically "P" for passport) */
-  type: string;
-  /** ISO 3166-1 alpha-3 country code of the issuing state */
-  countryCode: string;
-  /** Passport number */
-  passportNo: string;
-  /** Primary identifier (surname) */
-  surname: string;
-  /** Secondary identifier (given names) */
-  givenNames: string;
-  /** ISO 3166-1 alpha-3 nationality code */
+  /** Document Type (typically "P" for passport) */
+  documentType: string;
+  /** Issuing State (ISO 3166-1 alpha-3 country code) */
+  issuingState: string;
+  /** Document Number (passport number) */
+  documentNumber: string;
+  /** Primary Identifier (surname/family name) */
+  primaryIdentifier: string;
+  /** Secondary Identifier (given names) */
+  secondaryIdentifier: string;
+  /** Nationality (ISO 3166-1 alpha-3 country code) */
   nationality: string;
-  /** Date of birth in YYYYMMDD format */
+  /** Date of Birth (YYYYMMDD format) */
   dateOfBirth: string;
-  /** Personal number or identifier */
-  personalNo: string;
+  /** Personal Number (optional, may be empty) */
+  personalNumber?: string;
   /** Sex (M/F/<) */
   sex: string;
-  /** Place of birth */
-  placeOfBirth: string;
-  /** Date of issue in YYYYMMDD format */
-  dateOfIssue: string;
-  /** Date of expiry in YYYYMMDD format */
+  /** Date of Expiry (YYYYMMDD format) */
   dateOfExpiry: string;
 };
