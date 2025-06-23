@@ -16,6 +16,10 @@ export const formatField = (
 /**
  * Formats names for MRZ according to ICAO 9303 specification.
  *
+ * According to ICAO 9303, when truncation is needed, the primary identifier
+ * should be truncated to leave space for two filler characters and at least
+ * the first character of the secondary identifier.
+ *
  * @param primaryIdentifier - Primary identifier (surname/family name)
  * @param secondaryIdentifier - Secondary identifier (given names, space-separated)
  * @returns Formatted name string (39 characters) with spaces
@@ -30,7 +34,20 @@ export const formatName = (
 	const cleanSecondary = (secondaryIdentifier || "")
 		.toUpperCase()
 		.replace(/[^A-Z0-9\s]/g, "");
-	return formatField(`${cleanPrimary}  ${cleanSecondary}`, 39);
+
+	// If no secondary identifier, use all 39 characters for primary
+	if (!cleanSecondary) {
+		return formatField(cleanPrimary, 39);
+	}
+
+	// Reserve space for: primary + "  " (2 spaces) + at least 1 char of secondary
+	// So maximum primary length is 39 - 2 - 1 = 36 characters
+	const maxPrimaryLength = 36;
+	const truncatedPrimary = cleanPrimary.substring(0, maxPrimaryLength);
+	const remainingLength = 39 - truncatedPrimary.length - 2; // 2 for the double space separator
+	const truncatedSecondary = cleanSecondary.substring(0, remainingLength);
+
+	return formatField(`${truncatedPrimary}  ${truncatedSecondary}`, 39);
 };
 
 /**

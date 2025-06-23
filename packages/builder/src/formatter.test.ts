@@ -14,13 +14,14 @@ describe("formatName", () => {
 		expect(result).toHaveLength(39);
 	});
 
-	it("should handle long names by truncating", () => {
+	it("should handle long names by truncating primary while preserving secondary", () => {
 		const result = formatName(
 			"VERYLONGFAMILYNAMEHERE",
 			"VERYLONGGIVENNAMEHERE",
 		);
 		expect(result).toHaveLength(39);
-		expect(result).toMatch(/^VERYLONGFAMILYNAMEHERE {2}VERYLONGGIVENN/);
+		// Primary (22 chars) + 2 spaces + secondary fits remaining 15 chars
+		expect(result).toBe("VERYLONGFAMILYNAMEHERE  VERYLONGGIVENNA");
 	});
 
 	it("should clean non-alphabetic characters", () => {
@@ -39,6 +40,19 @@ describe("formatName", () => {
 		const result = formatName("A", "B");
 		expect(result).toBe("A  B                                   ");
 		expect(result).toHaveLength(39);
+	});
+
+	it("should handle very long primary identifier with short secondary", () => {
+		const result = formatName("VERYLONGFAMILYNAMEHEREVERYLONGFAMILYNAME", "T");
+		expect(result).toHaveLength(39);
+		// Primary truncated to 36 chars, 2 spaces, then 1 char secondary
+		expect(result).toBe("VERYLONGFAMILYNAMEHEREVERYLONGFAMILY  T");
+	});
+
+	it("should use full length for primary when secondary is empty", () => {
+		const result = formatName("VERYLONGFAMILYNAMEHEREVERYLONGFAMILYNAMEHERE", "");
+		expect(result).toHaveLength(39);
+		expect(result).toBe("VERYLONGFAMILYNAMEHEREVERYLONGFAMILYNAM");
 	});
 });
 
