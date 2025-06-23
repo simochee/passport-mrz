@@ -2,6 +2,18 @@ import type { Input } from "./types";
 import { calculateCheckDigit } from "./checksum";
 import { formatName, formatDate, formatField } from "./formatter";
 
+/**
+ * Builds MRZ (Machine Readable Zone) lines for passport documents.
+ * 
+ * Generates two 44-character lines according to TD3 format specification:
+ * - Line 1: Document type, country code, and formatted names
+ * - Line 2: Passport number, nationality, dates, personal number, and check digits
+ * 
+ * All check digits are calculated according to ICAO 9303 standard.
+ * 
+ * @param input - The passport information to encode in MRZ format
+ * @returns A tuple containing [line1, line2] of the MRZ
+ */
 export const buildMrzLines = (input: Input): [string, string] => {
   const line1 =
     "P" +
