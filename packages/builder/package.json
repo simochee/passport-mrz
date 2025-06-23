@@ -18,7 +18,7 @@
 	"scripts": {
 		"build": "unbuild",
 		"dev": "unbuild --stub",
-		"test": "vitest"
+		"test": "vitest run"
 	},
 	"devDependencies": {
 		"unbuild": "^3.5.0",

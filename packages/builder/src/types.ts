@@ -15,12 +15,12 @@ export type Input = {
 	secondaryIdentifier: string;
 	/** Nationality (ISO 3166-1 alpha-3 country code) */
 	nationality: string;
-	/** Date of Birth (YYYYMMDD format) */
+	/** Date of Birth (YYMMDD format) */
 	dateOfBirth: string;
 	/** Personal Number (optional, may be empty) */
 	personalNumber?: string;
 	/** Sex (M/F/<) */
 	sex: string;
-	/** Date of Expiry (YYYYMMDD format) */
+	/** Date of Expiry (YYMMDD format) */
 	dateOfExpiry: string;
 };

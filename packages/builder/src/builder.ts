@@ -1,5 +1,5 @@
 import { calculateCheckDigit } from "./checksum";
-import { formatDate, formatField, formatName } from "./formatter";
+import { finalizeLine, formatDate, formatField, formatName } from "./formatter";
 import type { Input } from "./types";
 
 /**
@@ -17,7 +17,7 @@ import type { Input } from "./types";
 export const buildMrzLines = (input: Input): [string, string] => {
 	const line1 =
 		input.documentType +
-		"<" +
+		" " +
 		formatField(input.issuingState, 3) +
 		formatName(input.primaryIdentifier, input.secondaryIdentifier);
 
@@ -32,7 +32,7 @@ export const buildMrzLines = (input: Input): [string, string] => {
 	const expiryDate = formatDate(input.dateOfExpiry);
 	const expiryCheckDigit = calculateCheckDigit(expiryDate);
 
-	const personalNumber = formatField(input.personalNumber || "", 14);
+	const personalNumber = formatField(input.personalNumber, 14);
 	const personalCheckDigit = calculateCheckDigit(personalNumber);
 
 	const compositeData =
@@ -59,5 +59,5 @@ export const buildMrzLines = (input: Input): [string, string] => {
 		personalCheckDigit +
 		compositeCheckDigit;
 
-	return [line1, line2];
+	return [finalizeLine(line1), finalizeLine(line2)];
 };

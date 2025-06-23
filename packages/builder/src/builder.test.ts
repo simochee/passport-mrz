@@ -11,9 +11,9 @@ describe("buildMrzLines", () => {
 			secondaryIdentifier: "TARO",
 			documentNumber: "TK0000001",
 			nationality: "JPN",
-			dateOfBirth: "19900101",
+			dateOfBirth: "900101",
 			sex: "M",
-			dateOfExpiry: "20301231",
+			dateOfExpiry: "301231",
 			personalNumber: "123456789",
 		};
 
