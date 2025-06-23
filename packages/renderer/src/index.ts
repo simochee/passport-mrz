@@ -1,3 +1,3 @@
 export function renderMRZ() {
-  return "Test MRZ Renderer";
+	return "Test MRZ Renderer";
 }

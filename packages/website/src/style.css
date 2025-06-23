@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "OCRB";
-  src: url("../assets/OCRB.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+	font-family: "OCRB";
+	src: url("../assets/OCRB.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 @theme {
-  --font-ocrb: "OCRB", monospace;
+	--font-ocrb: "OCRB", monospace;
 }

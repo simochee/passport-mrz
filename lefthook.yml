@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   jobs:
     - glob: "*.{js,ts,jsx,tsx,json,jsonc}"
-      run: npx biome check --write {staged_files}
+      run: npx biome check --write --unsafe {staged_files}
       stage_fixed: true
 
 commit-msg:

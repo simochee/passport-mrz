@@ -1,26 +1,26 @@
 {
-  "name": "@simochee/passport-mrz-renderer",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub"
-  },
-  "devDependencies": {
-    "unbuild": "^3.5.0",
-    "typescript": "^5.8.3"
-  }
+	"name": "@simochee/passport-mrz-renderer",
+	"version": "1.0.0",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild",
+		"dev": "unbuild --stub"
+	},
+	"devDependencies": {
+		"unbuild": "^3.5.0",
+		"typescript": "^5.8.3"
+	}
 }
