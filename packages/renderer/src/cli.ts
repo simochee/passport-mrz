@@ -13,8 +13,9 @@ const main = defineCommand({
 	args: {
 		output: {
 			type: "positional",
-			description: "Output file path",
-			default: "output.png",
+			description:
+				"Output file path (supports placeholders like {documentNumber}, {primaryIdentifier}, etc.)",
+			default: "{documentNumber}-{primaryIdentifier}_{secondaryIdentifier}.png",
 		},
 		json: {
 			type: "string",
@@ -122,8 +123,51 @@ const main = defineCommand({
 
 		const pngBuffer = await renderMRZToPNG(inputData);
 
-		await writeFile(args.output, pngBuffer);
-		console.log(`PNG file saved as ${args.output}`);
+		// プレイスホルダーを実際の値で置換（スペースはアンダースコアに変換）
+		let outputPath = args.output;
+		outputPath = outputPath.replace(
+			/\{documentType\}/g,
+			inputData.documentType.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{issuingState\}/g,
+			inputData.issuingState.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{documentNumber\}/g,
+			inputData.documentNumber.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{primaryIdentifier\}/g,
+			inputData.primaryIdentifier.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{secondaryIdentifier\}/g,
+			inputData.secondaryIdentifier.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{nationality\}/g,
+			inputData.nationality.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{dateOfBirth\}/g,
+			inputData.dateOfBirth.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{personalNumber\}/g,
+			(inputData.personalNumber || "").replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{sex\}/g,
+			inputData.sex.replace(/\s/g, "_"),
+		);
+		outputPath = outputPath.replace(
+			/\{dateOfExpiry\}/g,
+			inputData.dateOfExpiry.replace(/\s/g, "_"),
+		);
+
+		await writeFile(outputPath, pngBuffer);
+		console.log(`PNG file saved as ${outputPath}`);
 	},
 });
 
