@@ -1,5 +1,7 @@
+import { Share } from "@carbon/icons-react";
 import type { PassportInput } from "../types/passport";
 import { serializeHash } from "../utils/hash";
+import { BaseButton } from "./BaseButton";
 
 type Props = {
 	input: PassportInput;
@@ -19,10 +21,8 @@ export const ShareButton: React.FC<Props> = ({ input }) => {
 	};
 
 	return (
-		<div>
-			<button type="button" onClick={handleClick}>
-				共有リンクをコピー
-			</button>
-		</div>
+		<BaseButton icon={Share} onClick={handleClick}>
+			共有リンクをコピー
+		</BaseButton>
 	);
 };

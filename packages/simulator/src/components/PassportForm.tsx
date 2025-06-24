@@ -23,7 +23,6 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					<TextField
 						label="型 / Type"
 						note="パスポートは P で固定"
-						placeholder="P"
 						field={field}
 					/>
 				)}
@@ -33,40 +32,24 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					<TextField
 						label="発行国 / Country Code"
 						note="ISO 3166-1 の alpha-3 コード"
-						placeholder="JPN"
 						field={field}
 					/>
 				)}
 			</form.Field>
 			<form.Field name="passportNo">
-				{(field) => (
-					<TextField
-						label="旅券番号 / Passport No."
-						placeholder="XX1234567"
-						field={field}
-					/>
-				)}
+				{(field) => <TextField label="旅券番号 / Passport No." field={field} />}
 			</form.Field>
 			<form.Field name="surname">
-				{(field) => (
-					<TextField label="姓 / Surname" placeholder="YAMADA" field={field} />
-				)}
+				{(field) => <TextField label="姓 / Surname" field={field} />}
 			</form.Field>
 			<form.Field name="givenNames">
-				{(field) => (
-					<TextField
-						label="名 / Given Names"
-						placeholder="TARO"
-						field={field}
-					/>
-				)}
+				{(field) => <TextField label="名 / Given Names" field={field} />}
 			</form.Field>
 			<form.Field name="nationality">
 				{(field) => (
 					<TextField
 						label="国籍 / Nationality"
 						note="ISO 3166-1 の alpha-3 コード"
-						placeholder="JPN"
 						field={field}
 					/>
 				)}
@@ -76,7 +59,6 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					<TextField
 						label="生年月日 / Date of birth"
 						note="YYMMDD 形式"
-						placeholder="970101"
 						field={field}
 					/>
 				)}
@@ -95,7 +77,6 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					<TextField
 						label="性別 / Sex"
 						note="M または F または X"
-						placeholder="M"
 						field={field}
 					/>
 				)}
@@ -105,7 +86,6 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					<TextField
 						label="有効期限満了日 / Date of expiry"
 						note="YYMMDD 形式"
-						placeholder="271231"
 						field={field}
 					/>
 				)}

@@ -1,5 +1,7 @@
+import { Download } from "@carbon/icons-react";
 import { renderMRZToCanvas } from "@simochee/passport-mrz-renderer";
 import type { PassportInput } from "../types/passport";
+import { BaseButton } from "./BaseButton";
 
 type Props = {
 	input: PassportInput;
@@ -12,7 +14,7 @@ export const ExportButton: React.FC<Props> = ({ input }) => {
 		const canvas = renderMRZToCanvas({
 			documentType: input.type,
 			issuingState: input.countryCode,
-			documentNumber: input.inputNo,
+			documentNumber: input.passportNo,
 			primaryIdentifier: input.surname,
 			secondaryIdentifier: input.givenNames,
 			nationality: input.nationality,
@@ -37,10 +39,8 @@ export const ExportButton: React.FC<Props> = ({ input }) => {
 	};
 
 	return (
-		<div>
-			<button type="button" onClick={handleClick}>
-				download png
-			</button>
-		</div>
+		<BaseButton icon={Download} onClick={handleClick}>
+			PNG をダウンロード
+		</BaseButton>
 	);
 };
