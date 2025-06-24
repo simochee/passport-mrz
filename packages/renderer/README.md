@@ -100,9 +100,9 @@ npx @simochee/passport-mrz-renderer \
 
 ## Features
 
-🖼️ **OCR-B font rendering** - Uses authentic OCR-B font for accurate MRZ appearance
-🌐 **Cross-platform support** - Works in both Node.js and browser environments
-🎯 **CLI included** - Command-line tool with flexible input options
+🖼️ **OCR-B font rendering** - Uses authentic OCR-B font for accurate MRZ appearance<br>
+🌐 **Cross-platform support** - Works in both Node.js and browser environments<br>
+🎯 **CLI included** - Command-line tool with flexible input options<br>
 📄 **Dynamic filenames** - Supports placeholder substitution in output filenames
 
 ## API

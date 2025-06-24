@@ -35,10 +35,10 @@ console.log(line2)
 
 ## Features
 
-✨ **TD3 format compliant** - Generates 2×44 character lines according to ICAO 9303 standard
-🔒 **Automatic check digits** - Calculates all required check digits for validation
-🧹 **Input sanitization** - Strips non-alphanumeric characters to ensure MRZ compliance
-📦 **Zero dependencies** - Lightweight and fast
+✨ **TD3 format compliant** - Generates 2×44 character lines according to ICAO 9303 standard<br>
+🔒 **Automatic check digits** - Calculates all required check digits for validation<br>
+🧹 **Input sanitization** - Strips non-alphanumeric characters to ensure MRZ compliance<br>
+📦 **Zero dependencies** - Lightweight and fast<br>
 🎯 **TypeScript ready** - Full type definitions included
 
 ## API
