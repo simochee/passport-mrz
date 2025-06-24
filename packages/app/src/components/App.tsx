@@ -1,6 +1,7 @@
 import { buildMrzLines } from "@simochee/passport-mrz-builder";
 import { useState } from "react";
 import type { PassportInput } from "../types/passport";
+import { DownloadImage } from "./DownloadImage";
 import { PassportForm } from "./PassportForm";
 
 export const App: React.FC = () => {
@@ -38,6 +39,7 @@ export const App: React.FC = () => {
 					{line}
 				</p>
 			))}
+			<DownloadImage passport={values} />
 			<PassportForm defaultValues={defaultValues} onChange={setValues} />
 		</div>
 	);
