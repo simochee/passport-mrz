@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"deploy": "wrangler deploy",
 		"preview": "wrangler pages dev dist"
 	},
 	"devDependencies": {
@@ -16,7 +17,8 @@
 		"@vitejs/plugin-react": "^4.6.0",
 		"tailwindcss": "^4.1.10",
 		"tsconfig": "workspace:*",
-		"vite": "^6.3.5"
+		"vite": "^6.3.5",
+		"wrangler": "^4.21.0"
 	},
 	"dependencies": {
 		"@simochee/passport-mrz-builder": "workspace:*",
