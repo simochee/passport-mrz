@@ -21,6 +21,9 @@
 		"wrangler": "^4.21.0"
 	},
 	"dependencies": {
+		"@carbon/icons-react": "^11.62.0",
+		"@faker-js/faker": "^9.8.0",
+		"@headlessui/react": "^2.2.4",
 		"@simochee/passport-mrz-builder": "workspace:*",
 		"@simochee/passport-mrz-renderer": "workspace:*",
 		"@tanstack/react-form": "^1.12.3",
