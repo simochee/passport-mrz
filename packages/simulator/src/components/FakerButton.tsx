@@ -1,3 +1,4 @@
+import { Shuffle } from "@carbon/icons-react";
 import { faker } from "@faker-js/faker/locale/en";
 import type { PassportInput } from "../types/passport";
 import { BaseButton } from "./BaseButton";
@@ -53,5 +54,9 @@ export const FakerButton: React.FC<Props> = ({ onClick }) => {
 		onClick(generateFakePassport());
 	};
 
-	return <BaseButton onClick={handleClick}>ランダム</BaseButton>;
+	return (
+		<BaseButton icon={Shuffle} onClick={handleClick}>
+			ランダム
+		</BaseButton>
+	);
 };

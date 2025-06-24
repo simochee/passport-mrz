@@ -1,3 +1,4 @@
+import { Reset } from "@carbon/icons-react";
 import { useForm, useStore } from "@tanstack/react-form";
 import { useEffect } from "react";
 import { DEFAULT_VALUES } from "../hooks/useInitialValues";
@@ -43,7 +44,9 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 	return (
 		<>
 			<FakerButton onClick={setValues} />
-			<BaseButton onClick={reset}>リセット</BaseButton>
+			<BaseButton icon={Reset} onClick={reset}>
+				リセット
+			</BaseButton>
 			<form className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">
 				<form.Field name="type">
 					{(field) => (
