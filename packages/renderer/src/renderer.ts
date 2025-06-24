@@ -1,5 +1,5 @@
 import { buildMrzLines, type Input } from "@simochee/passport-mrz-builder";
-import type { CanvasLike } from "./canvas";
+import type { Canvas } from "canvas";
 import type { RenderOptions } from "./types";
 
 /**
@@ -10,7 +10,7 @@ import type { RenderOptions } from "./types";
  */
 export function renderMRZToCanvas(
 	input: Input,
-	canvas: CanvasLike,
+	canvas: Canvas,
 	options: RenderOptions = {},
 ): void {
 	const { width = 880 } = options;
