@@ -16,7 +16,7 @@ export const parseQuery = (): Partial<PassportInput> => {
 		dateOfExpiry: url.searchParams.get("dateOfExpiry") || undefined,
 	};
 
-	for (const key of Object.keys(values)) {
+	for (const key of [...Object.keys(values), "placeOfBirth", "dateOfIssue"]) {
 		url.searchParams.delete(key);
 	}
 	window.history.replaceState({}, "", url.href);
