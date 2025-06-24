@@ -10,21 +10,18 @@ const main = defineCommand({
 		description: pkg.description,
 	},
 	async run() {
-		const pngBuffer = await renderMRZToPNG(
-			{
-				documentType: "P",
-				issuingState: "JPN",
-				documentNumber: "12345678",
-				primaryIdentifier: "",
-				secondaryIdentifier: "",
-				nationality: "",
-				dateOfBirth: "",
-				personalNumber: "",
-				sex: "",
-				dateOfExpiry: "",
-			},
-			{ width: 1000 },
-		);
+		const pngBuffer = await renderMRZToPNG({
+			documentType: "P",
+			issuingState: "JPN",
+			documentNumber: "12345678",
+			primaryIdentifier: "",
+			secondaryIdentifier: "",
+			nationality: "",
+			dateOfBirth: "",
+			personalNumber: "",
+			sex: "",
+			dateOfExpiry: "",
+		});
 
 		await writeFile("output.local.png", pngBuffer);
 		console.log("PNG file saved as output.local.png");
