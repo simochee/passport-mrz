@@ -26,9 +26,8 @@
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "^19.8.1",
-		"@tsconfig/node-ts": "^23.6.1",
-		"@tsconfig/node24": "^24.0.1",
 		"@types/node": "^24.0.3",
+		"tsconfig": "workspace:*",
 		"tsx": "^4.20.3",
 		"typescript": "^5.8.3",
 		"unbuild": "^3.5.0"
