@@ -1,3 +1,4 @@
+import url from "@rollup/plugin-url";
 import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
@@ -7,5 +8,11 @@ export default defineBuildConfig({
 	failOnWarn: false,
 	rollup: {
 		emitCJS: true,
+	},
+	hooks: {
+		"rollup:options"(_ctx, options) {
+			options.plugins ||= [];
+			options.plugins.push(url());
+		},
 	},
 });

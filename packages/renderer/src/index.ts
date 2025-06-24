@@ -1,12 +1,8 @@
-import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import type { Input } from "@simochee/passport-mrz-builder";
 import { createCanvas, registerFont } from "canvas";
+import fontPath from "ocrb-webfont/OCRB.ttf";
 import { renderMRZToCanvas } from "./renderer";
 import type { RenderOptions } from "./types";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * Node.js環境用のMRZ PNG生成関数
@@ -20,9 +16,7 @@ export async function renderMRZToPNG(
 ): Promise<Buffer> {
 	// OCR-Bフォントを登録
 	try {
-		const fontPath = join(__dirname, "../../ocrb-webfont/assets/OCRB.woff2");
-		const fontBuffer = readFileSync(fontPath);
-		registerFont(fontBuffer, { family: "OCRB" });
+		registerFont(fontPath, { family: "OCRB" });
 	} catch (_error) {
 		console.warn("OCR-B font not found, using default font");
 	}
