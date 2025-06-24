@@ -29,22 +29,41 @@ export const MachineReadableZone: React.FC<Props> = ({ values }) => {
 	const mrzString = buildMrzLines(input).join("\n");
 
 	const dataUrl = useMemo<string | undefined>(() => {
+		console.log("load", fontLoaded);
 		if (!fontLoaded) {
 			return;
 		}
 
 		const canvas = renderMRZToCanvas(input);
 
+		console.log("memo", canvas.toDataURL("image/png").length);
+
 		return canvas.toDataURL("image/png");
 	}, [input, fontLoaded]);
 
 	useEffect(() => {
-		document.fonts.ready.then(() => setFontLoaded(true));
+		document.fonts.ready
+			.then(() =>
+				renderMRZToCanvas({
+					documentType: "",
+					issuingState: "",
+					documentNumber: "",
+					primaryIdentifier: "",
+					secondaryIdentifier: "",
+					nationality: "",
+					dateOfBirth: "",
+					personalNumber: "",
+					sex: "",
+					dateOfExpiry: "",
+				}),
+			)
+			.then(() => new Promise((resolve) => setTimeout(resolve, 0)))
+			.then(() => setFontLoaded(true));
 	}, []);
 
 	return (
 		<div className="h-32 place-items-center">
-			{fontLoaded ? (
+			{dataUrl ? (
 				<img className="object-center" src={dataUrl} alt={mrzString} />
 			) : (
 				<p>loading...</p>
