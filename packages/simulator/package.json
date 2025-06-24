@@ -11,15 +11,16 @@
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "^1.7.4",
+		"@tailwindcss/vite": "^4.1.10",
 		"@types/react": "^19.1.8",
 		"@types/react-dom": "^19.1.6",
 		"@vitejs/plugin-react": "^4.6.0",
+		"tailwindcss": "^4.1.10",
 		"tsconfig": "workspace:*",
 		"vite": "^6.3.5",
 		"wrangler": "^4.21.0"
 	},
 	"dependencies": {
-		"@adobe/react-spectrum": "^3.42.2",
 		"@simochee/passport-mrz-builder": "workspace:*",
 		"@simochee/passport-mrz-renderer": "workspace:*",
 		"@tanstack/react-form": "^1.12.3",

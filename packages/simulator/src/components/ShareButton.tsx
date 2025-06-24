@@ -1,4 +1,3 @@
-import { Button } from "@adobe/react-spectrum";
 import type { PassportInput } from "../types/passport";
 import { serializeHash } from "../utils/hash";
 
@@ -7,7 +6,9 @@ type Props = {
 };
 
 export const ShareButton: React.FC<Props> = ({ input }) => {
-	const handlePress = async () => {
+	const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+		e.preventDefault();
+
 		const hash = serializeHash(input);
 		const url = new URL(window.location.href);
 
@@ -18,8 +19,10 @@ export const ShareButton: React.FC<Props> = ({ input }) => {
 	};
 
 	return (
-		<Button variant="secondary" onPress={handlePress}>
-			共有リンクをコピー
-		</Button>
+		<div>
+			<button type="button" onClick={handleClick}>
+				共有リンクをコピー
+			</button>
+		</div>
 	);
 };

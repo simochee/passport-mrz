@@ -1,4 +1,5 @@
-/* React Spectrum styling replaces Tailwind CSS */
-body {
-  font-family: "OCRB", monospace;
+@import "tailwindcss";
+
+@theme {
+	--font-ocrb: "OCRB", monospace;
 }
