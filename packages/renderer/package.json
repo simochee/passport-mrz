@@ -16,7 +16,9 @@
 	},
 	"bin": "./bin/index.mjs",
 	"files": [
-		"dist"
+		"bin",
+		"dist",
+		"assets"
 	],
 	"scripts": {
 		"build": "unbuild",
