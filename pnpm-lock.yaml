@@ -27,7 +27,7 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0(typescript@5.8.3)
 
-  packages/app:
+  packages/simulator:
     dependencies:
       '@simochee/passport-mrz-builder':
         specifier: workspace:*
