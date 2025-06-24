@@ -25,7 +25,7 @@ export const App: React.FC = () => {
 	return (
 		<div>
 			{mrzLines.map((line) => (
-				<p key={line} className="font-ocrb">
+				<p key={line} className="font-ocrb leading-none">
 					{line}
 				</p>
 			))}
