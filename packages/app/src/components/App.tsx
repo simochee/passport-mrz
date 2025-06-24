@@ -1,24 +1,15 @@
 import { buildMrzLines } from "@simochee/passport-mrz-builder";
 import { useState } from "react";
-import type { PassportInput } from "../types/passport";
-import { DownloadImage } from "./DownloadImage";
+import { getInitialValues } from "../utils/form";
+import { ExportButton } from "./ExportButton";
 import { PassportForm } from "./PassportForm";
+import { ShareButton } from "./ShareButton";
 
 export const App: React.FC = () => {
-	const defaultValues: PassportInput = {
-		type: "P",
-		countryCode: "",
-		passportNo: "",
-		surname: "",
-		givenNames: "",
-		nationality: "",
-		dateOfBirth: "",
-		personalNo: "",
-		sex: "M",
-		dateOfExpiry: "",
-	};
+	const initialValues = getInitialValues();
 
-	const [values, setValues] = useState(defaultValues);
+	const [values, setValues] = useState(initialValues);
+
 	const mrzLines = buildMrzLines({
 		documentType: values.type,
 		issuingState: values.countryCode,
@@ -39,8 +30,9 @@ export const App: React.FC = () => {
 					{line}
 				</p>
 			))}
-			<DownloadImage passport={values} />
-			<PassportForm defaultValues={defaultValues} onChange={setValues} />
+			<ExportButton input={values} />
+			<ShareButton input={values} />
+			<PassportForm defaultValues={initialValues} onChange={setValues} />
 		</div>
 	);
 };
