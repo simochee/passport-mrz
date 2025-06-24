@@ -1,23 +1,9 @@
 import { buildMrzLines, type Input } from "@simochee/passport-mrz-builder";
+import type { CanvasLike } from "./canvas";
 import type { RenderOptions } from "./types";
 
-export interface CanvasLike {
-	width: number;
-	height: number;
-	getContext(contextId: "2d"): CanvasContext | null;
-}
-
-export interface CanvasContext {
-	fillStyle: string;
-	font: string;
-	textAlign: CanvasTextAlign;
-	textBaseline: CanvasTextBaseline;
-	fillRect(x: number, y: number, width: number, height: number): void;
-	fillText(text: string, x: number, y: number): void;
-}
-
 /**
- * キャンバスにMRZを描画する共通関数（サイズ設定込み）
+ * キャンバスにMRZを描画する共通関数
  * @param input パスポート情報
  * @param canvas キャンバス
  * @param options レンダリングオプション

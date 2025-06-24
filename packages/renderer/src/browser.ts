@@ -1,5 +1,5 @@
 import type { Input } from "@simochee/passport-mrz-builder";
-import { renderMRZToCanvas } from "./canvas-renderer";
+import { renderMRZToCanvas } from "./renderer";
 import type { RenderOptions } from "./types";
 
 /**

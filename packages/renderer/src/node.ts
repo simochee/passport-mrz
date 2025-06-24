@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { Input } from "@simochee/passport-mrz-builder";
 import { createCanvas, registerFont } from "canvas";
-import { renderMRZToCanvas } from "./canvas-renderer";
+import { renderMRZToCanvas } from "./renderer";
 import type { RenderOptions } from "./types";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
