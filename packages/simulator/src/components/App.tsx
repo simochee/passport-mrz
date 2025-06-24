@@ -31,7 +31,9 @@ export const App: React.FC = () => {
 			))}
 			<ExportButton input={values} />
 			<ShareButton input={values} />
-			<PassportForm defaultValues={initialValues} onChange={setValues} />
+			<div className="px-4 mx-auto max-w-5xl">
+				<PassportForm defaultValues={initialValues} onChange={setValues} />
+			</div>
 		</div>
 	);
 };

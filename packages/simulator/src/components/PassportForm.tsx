@@ -1,7 +1,7 @@
 import { useForm, useStore } from "@tanstack/react-form";
 import { useEffect } from "react";
 import type { PassportInput } from "../types/passport";
-import { InputField } from "./InputField";
+import { TextField } from "./TextField";
 
 type Props = {
 	defaultValues: PassportInput;
@@ -17,36 +17,98 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 	useEffect(() => onChange(values), [onChange, values]);
 
 	return (
-		<form>
+		<form className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">
 			<form.Field name="type">
-				{(field) => <InputField label="Type" field={field} />}
+				{(field) => (
+					<TextField
+						label="型 / Type"
+						note="パスポートは P で固定"
+						placeholder="P"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="countryCode">
-				{(field) => <InputField label="Country Code" field={field} />}
+				{(field) => (
+					<TextField
+						label="発行国 / Country Code"
+						note="ISO 3166-1 の alpha-3 コード"
+						placeholder="JPN"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="passportNo">
-				{(field) => <InputField label="Passport No." field={field} />}
+				{(field) => (
+					<TextField
+						label="旅券番号 / Passport No."
+						placeholder="XX1234567"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="surname">
-				{(field) => <InputField label="Surname" field={field} />}
+				{(field) => (
+					<TextField label="姓 / Surname" placeholder="YAMADA" field={field} />
+				)}
 			</form.Field>
 			<form.Field name="givenNames">
-				{(field) => <InputField label="Given Names" field={field} />}
+				{(field) => (
+					<TextField
+						label="名 / Given Names"
+						placeholder="TARO"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="nationality">
-				{(field) => <InputField label="Nationality" field={field} />}
+				{(field) => (
+					<TextField
+						label="国籍 / Nationality"
+						note="ISO 3166-1 の alpha-3 コード"
+						placeholder="JPN"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="dateOfBirth">
-				{(field) => <InputField label="Date of birth" field={field} />}
+				{(field) => (
+					<TextField
+						label="生年月日 / Date of birth"
+						note="YYMMDD 形式"
+						placeholder="970101"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="personalNo">
-				{(field) => <InputField label="Personal No." field={field} />}
+				{(field) => (
+					<TextField
+						label="個人番号 / Personal No."
+						note="国によっては設定されません"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="sex">
-				{(field) => <InputField label="Sex" field={field} />}
+				{(field) => (
+					<TextField
+						label="性別 / Sex"
+						note="M または F または X"
+						placeholder="M"
+						field={field}
+					/>
+				)}
 			</form.Field>
 			<form.Field name="dateOfExpiry">
-				{(field) => <InputField label="Date of expiry" field={field} />}
+				{(field) => (
+					<TextField
+						label="有効期限満了日 / Date of expiry"
+						note="YYMMDD 形式"
+						placeholder="271231"
+						field={field}
+					/>
+				)}
 			</form.Field>
 		</form>
 	);
