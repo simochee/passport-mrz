@@ -1,3 +1,4 @@
+import { TextField as SpectrumTextField } from "@adobe/react-spectrum";
 import type { AnyFieldApi } from "@tanstack/react-form";
 
 type Props = {
@@ -14,24 +15,14 @@ export const TextField: React.FC<Props> = ({
 	placeholder,
 }) => {
 	return (
-		<div className="flex flex-col gap-2">
-			<label htmlFor={field.name} className="text-slate-800 font-bold text-sm">
-				{label}
-			</label>
-			<input
-				id={field.name}
-				className="border-2 border-slate-200 rounded px-3 py-1 focus:border-blue-600 outline-0 leading-loose"
-				placeholder={placeholder}
-				name={field.name}
-				value={field.state.value}
-				onBlur={field.handleBlur}
-				onChange={(e) => field.handleChange(e.target.value)}
-			/>
-			{note && (
-				<p className="text-xs text-slate-500" aria-describedby={field.name}>
-					{note}
-				</p>
-			)}
-		</div>
+		<SpectrumTextField
+			label={label}
+			description={note}
+			placeholder={placeholder}
+			name={field.name}
+			value={field.state.value}
+			onBlur={field.handleBlur}
+			onChange={(value) => field.handleChange(value)}
+		/>
 	);
 };

@@ -1,3 +1,4 @@
+import { Button } from "@adobe/react-spectrum";
 import { renderMRZToCanvas } from "@simochee/passport-mrz-renderer";
 import type { PassportInput } from "../types/passport";
 
@@ -6,13 +7,11 @@ type Props = {
 };
 
 export const ExportButton: React.FC<Props> = ({ input }) => {
-	const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-		e.preventDefault();
-
+	const handlePress = () => {
 		const canvas = renderMRZToCanvas({
 			documentType: input.type,
 			issuingState: input.countryCode,
-			documentNumber: input.inputNo,
+			documentNumber: input.passportNo,
 			primaryIdentifier: input.surname,
 			secondaryIdentifier: input.givenNames,
 			nationality: input.nationality,
@@ -37,10 +36,8 @@ export const ExportButton: React.FC<Props> = ({ input }) => {
 	};
 
 	return (
-		<div>
-			<button type="button" onClick={handleClick}>
-				download png
-			</button>
-		</div>
+		<Button variant="primary" onPress={handlePress}>
+			PNG Download
+		</Button>
 	);
 };
