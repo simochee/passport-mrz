@@ -5,7 +5,9 @@ import { DEFAULT_VALUES } from "../hooks/useInitialValues";
 import type { PassportInput } from "../types/passport";
 import { persist } from "../utils/persistence";
 import { BaseButton } from "./BaseButton";
+import { ExportButton } from "./ExportButton";
 import { FakerButton } from "./FakerButton";
+import { ShareButton } from "./ShareButton";
 import { TextField } from "./TextField";
 
 type Props = {
@@ -42,11 +44,15 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 	}, [onChange, values]);
 
 	return (
-		<>
-			<FakerButton onClick={setValues} />
-			<BaseButton icon={Reset} onClick={reset}>
-				リセット
-			</BaseButton>
+		<div className="grid gap-6">
+			<div className="flex gap-2 justify-center flex-wrap">
+				<ExportButton input={values} />
+				<ShareButton input={values} />
+				<FakerButton onClick={setValues} />
+				<BaseButton icon={Reset} onClick={reset}>
+					リセット
+				</BaseButton>
+			</div>
 			<form className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">
 				<form.Field name="type">
 					{(field) => (
@@ -123,6 +129,6 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					)}
 				</form.Field>
 			</form>
-		</>
+		</div>
 	);
 };
