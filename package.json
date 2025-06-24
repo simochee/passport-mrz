@@ -2,7 +2,9 @@
 	"private": true,
 	"scripts": {
 		"build": "pnpm -r run build",
-		"dev": "pnpm -r run dev"
+		"dev": "pnpm -r run dev",
+		"deploy": "pnpm --filter simulator run build && pnpm --filter simulator run deploy",
+		"deploy:dev": "pnpm --filter simulator run build && pnpm --filter simulator run deploy:dev"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.5",
@@ -10,6 +12,7 @@
 		"@commitlint/config-conventional": "^19.8.1",
 		"lefthook": "^1.11.14",
 		"typescript": "^5.8.3",
-		"unbuild": "^3.5.0"
+		"unbuild": "^3.5.0",
+		"wrangler": "^4.21.0"
 	}
 }
