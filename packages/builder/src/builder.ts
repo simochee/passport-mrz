@@ -1,6 +1,6 @@
 import { calculateCheckDigit } from "./checksum";
 import { finalizeLine, formatDate, formatField, formatName } from "./formatter";
-import type { Input } from "./types";
+import type { Input } from "./input";
 
 /**
  * Builds MRZ (Machine Readable Zone) lines for passport documents.

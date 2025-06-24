@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { buildMrzLines } from "./builder";
-import type { Input } from "./types";
+import type { Input } from "./input";
 
 describe("buildMrzLines", () => {
 	it("should generate correct MRZ lines for a standard passport", () => {

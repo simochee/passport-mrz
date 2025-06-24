@@ -6,4 +6,4 @@
  */
 
 export { buildMrzLines } from "./builder";
-export type { Input } from "./types";
+export type { Input } from "./input";
