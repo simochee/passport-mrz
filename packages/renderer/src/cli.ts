@@ -11,18 +11,14 @@ const main = defineCommand({
 		description: pkg.description,
 	},
 	args: {
+		output: {
+			type: "positional",
+			description: "Output file path",
+			default: "output.png",
+		},
 		json: {
 			type: "string",
 			description: "Load input data from JSON file",
-		},
-		clipboard: {
-			type: "boolean",
-			description: "Copy PNG image to clipboard",
-		},
-		output: {
-			type: "string",
-			description: "Output file path",
-			default: "output.png",
 		},
 		documentType: {
 			type: "string",
@@ -126,34 +122,8 @@ const main = defineCommand({
 
 		const pngBuffer = await renderMRZToPNG(inputData);
 
-		if (args.clipboard) {
-			const { spawn } = await import("node:child_process");
-			const { promisify } = await import("node:util");
-			const _execAsync = promisify(spawn);
-
-			// macOSの場合はpbcopyを使用
-			if (process.platform === "darwin") {
-				const pbcopy = spawn("pbcopy", [], { stdio: ["pipe", "pipe", "pipe"] });
-				pbcopy.stdin.write(pngBuffer);
-				pbcopy.stdin.end();
-
-				await new Promise((resolve, reject) => {
-					pbcopy.on("close", (code) => {
-						if (code === 0) {
-							resolve(undefined);
-						} else {
-							reject(new Error(`pbcopy exited with code ${code}`));
-						}
-					});
-				});
-				console.log("PNG image copied to clipboard");
-			} else {
-				console.log("Clipboard feature is only supported on macOS");
-			}
-		} else {
-			await writeFile(args.output, pngBuffer);
-			console.log(`PNG file saved as ${args.output}`);
-		}
+		await writeFile(args.output, pngBuffer);
+		console.log(`PNG file saved as ${args.output}`);
 	},
 });
 
