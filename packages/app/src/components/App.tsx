@@ -7,7 +7,6 @@ import { ShareButton } from "./ShareButton";
 
 export const App: React.FC = () => {
 	const initialValues = getInitialValues();
-
 	const [values, setValues] = useState(initialValues);
 
 	const mrzLines = buildMrzLines({

@@ -1,8 +1,9 @@
+import { useMemo } from "react";
 import type { PassportInput } from "../types/passport";
 import { parseHash } from "./hash";
 
 export const getInitialValues = (): PassportInput => {
-	const hashValues = parseHash();
+	const hashValues = useMemo(() => parseHash(), []);
 
 	return {
 		type: hashValues.type ?? "P",

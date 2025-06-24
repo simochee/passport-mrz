@@ -23,6 +23,10 @@ export const parseHash = (): Partial<PassportInput> => {
 		hash.split("&").map((param) => param.split("=").map(decodeURIComponent)),
 	);
 
+	const url = new URL(window.location.href);
+	url.hash = "";
+	window.history.replaceState({}, "", url.toString());
+
 	return {
 		type: values.t,
 		countryCode: values.c,
