@@ -7,11 +7,11 @@ import { type Canvas, createCanvas, registerFont } from "canvas";
  * @returns 描画済みのキャンバス
  */
 export function renderMRZToCanvas(input: Input): Canvas {
-	const fontSize = 20;
+	const fontSize = 60;
 	const backgroundColor = "#ffffff";
 	const textColor = "#000000";
 	const lineHeight = 1.2;
-	const padding = 16;
+	const padding = 48;
 
 	// MRZテキストを生成
 	const mrzLines = buildMrzLines(input);
@@ -26,7 +26,9 @@ export function renderMRZToCanvas(input: Input): Canvas {
 	const width = Math.ceil(textWidth + padding * 2);
 	const height = Math.ceil(textHeight + padding * 2);
 
-	registerFont("./assets/OCRB.ttf", { family: "OCRB" });
+	if (typeof registerFont === "function") {
+		registerFont("./assets/OCRB.ttf", { family: "OCRB" });
+	}
 
 	// キャンバスを生成
 	const canvas = createCanvas(width, height);
