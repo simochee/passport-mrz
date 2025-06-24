@@ -45,7 +45,8 @@
 - @simochee/passport-mrz-builder: MRZ生成ライブラリ（tsupでビルド）
 - @simochee/passport-mrz-renderer: 画像生成ライブラリ（tsupでビルド）
   - ブラウザとNode.js両対応
-  - パラメータでPNG/SVG選択可能
+  - PNGで生成
+  - 生成時の幅をパラメータで指定可能
 
 ### MRZ対応タイプ
 - TD3（パスポート）のみ対応: 2行×44文字

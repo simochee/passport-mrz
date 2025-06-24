@@ -1,6 +1,7 @@
 import { buildMrzLines } from "@simochee/passport-mrz-builder";
 import { useState } from "react";
 import type { PassportInput } from "../types/passport";
+import { ExampleCanvas } from "./Canvas";
 import { PassportForm } from "./PassportForm";
 
 export const App: React.FC = () => {
@@ -33,6 +34,7 @@ export const App: React.FC = () => {
 
 	return (
 		<div>
+			<ExampleCanvas />
 			{mrzLines.map((line) => (
 				<p key={line} className="font-ocrb">
 					{line}
