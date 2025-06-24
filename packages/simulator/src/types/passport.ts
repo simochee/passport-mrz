@@ -1,12 +1,4 @@
-export type PassportInput = {
-	type: string;
-	countryCode: string;
-	passportNo: string;
-	surname: string;
-	givenNames: string;
-	nationality: string;
-	dateOfBirth: string;
-	personalNo: string;
-	sex: string;
-	dateOfExpiry: string;
-};
+import type { InferOutput } from "valibot";
+import type { PassportSchema } from "../utils/schema";
+
+export type PassportInput = InferOutput<typeof PassportSchema>;

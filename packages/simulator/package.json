@@ -29,6 +29,7 @@
 		"@tanstack/react-form": "^1.12.3",
 		"ocrb-webfont": "workspace:*",
 		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
+		"react-dom": "^19.1.0",
+		"valibot": "^1.1.0"
 	}
 }

@@ -1,6 +1,9 @@
 import { useForm, useStore } from "@tanstack/react-form";
 import { useEffect } from "react";
+import { DEFAULT_VALUES } from "../hooks/useInitialValues";
 import type { PassportInput } from "../types/passport";
+import { persist } from "../utils/persistence";
+import { BaseButton } from "./BaseButton";
 import { FakerButton } from "./FakerButton";
 import { TextField } from "./TextField";
 
@@ -15,17 +18,32 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 	});
 	const values = useStore(form.store, (state) => state.values);
 
-	useEffect(() => onChange(values), [onChange, values]);
+	const setValues = (values: PassportInput) => {
+		form.setFieldValue("type", values.type);
+		form.setFieldValue("countryCode", values.countryCode);
+		form.setFieldValue("passportNo", values.passportNo);
+		form.setFieldValue("surname", values.surname);
+		form.setFieldValue("givenNames", values.givenNames);
+		form.setFieldValue("nationality", values.nationality);
+		form.setFieldValue("dateOfBirth", values.dateOfBirth);
+		form.setFieldValue("personalNo", values.personalNo);
+		form.setFieldValue("sex", values.sex);
+		form.setFieldValue("dateOfExpiry", values.dateOfExpiry);
+	};
+
+	const reset = () => {
+		setValues(DEFAULT_VALUES);
+	};
+
+	useEffect(() => {
+		persist(values);
+		onChange(values);
+	}, [onChange, values]);
 
 	return (
 		<>
-			<FakerButton
-				onClick={(values) => {
-					Object.entries(values).forEach(([key, value]) => {
-						form.setFieldValue(key, value);
-					});
-				}}
-			/>
+			<FakerButton onClick={setValues} />
+			<BaseButton onClick={reset}>リセット</BaseButton>
 			<form className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">
 				<form.Field name="type">
 					{(field) => (
