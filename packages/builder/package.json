@@ -1,15 +1,11 @@
 {
 	"name": "@simochee/passport-mrz-builder",
 	"version": "1.0.0",
-	"description": "A powerful TypeScript library for generating TD3 passport MRZ (Machine Readable Zone) strings with robust validation and encoding compliance",
+	"description": "A library for generating passport MRZ (Machine Readable Zone) strings",
 	"type": "module",
 	"keywords": [
 		"mrz",
-		"passport",
-		"td3",
-		"machine-readable-zone",
-		"travel-document",
-		"validation"
+		"passport"
 	],
 	"author": "simochee",
 	"license": "MIT",
