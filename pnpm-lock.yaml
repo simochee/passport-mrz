@@ -27,6 +27,46 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0(typescript@5.8.3)
 
+  packages/app:
+    dependencies:
+      '@simochee/passport-mrz-builder':
+        specifier: workspace:*
+        version: link:../builder
+      '@tanstack/react-form':
+        specifier: ^1.12.3
+        version: 1.12.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      ocrb-webfont:
+        specifier: workspace:*
+        version: link:../ocrb-webfont
+      react:
+        specifier: ^19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: ^19.1.0
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.1.10
+        version: 4.1.10(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1))
+      '@tsconfig/vite-react':
+        specifier: ^6.3.6
+        version: 6.3.6
+      '@types/react':
+        specifier: ^19.1.8
+        version: 19.1.8
+      '@types/react-dom':
+        specifier: ^19.1.6
+        version: 19.1.6(@types/react@19.1.8)
+      '@vitejs/plugin-react':
+        specifier: ^4.6.0
+        version: 4.6.0(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1))
+      tailwindcss:
+        specifier: ^4.1.10
+        version: 4.1.10
+      vite:
+        specifier: ^6.3.5
+        version: 6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)
+
   packages/builder:
     devDependencies:
       '@tsconfig/node-ts':
@@ -74,46 +114,6 @@ importers:
       unbuild:
         specifier: ^3.5.0
         version: 3.5.0(typescript@5.8.3)
-
-  packages/website:
-    dependencies:
-      '@simochee/passport-mrz-builder':
-        specifier: workspace:*
-        version: link:../builder
-      '@tanstack/react-form':
-        specifier: ^1.12.3
-        version: 1.12.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      ocrb-webfont:
-        specifier: workspace:*
-        version: link:../ocrb-webfont
-      react:
-        specifier: ^19.1.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^19.1.0
-        version: 19.1.0(react@19.1.0)
-    devDependencies:
-      '@tailwindcss/vite':
-        specifier: ^4.1.10
-        version: 4.1.10(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1))
-      '@tsconfig/vite-react':
-        specifier: ^6.3.6
-        version: 6.3.6
-      '@types/react':
-        specifier: ^19.1.8
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.1.6
-        version: 19.1.6(@types/react@19.1.8)
-      '@vitejs/plugin-react':
-        specifier: ^4.6.0
-        version: 4.6.0(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1))
-      tailwindcss:
-        specifier: ^4.1.10
-        version: 4.1.10
-      vite:
-        specifier: ^6.3.5
-        version: 6.3.5(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)
 
 packages:
 
