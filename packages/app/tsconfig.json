@@ -1,8 +1,7 @@
 {
-	"extends": "@tsconfig/vite-react",
+	"extends": "tsconfig/react.json",
 	"compilerOptions": {
 		"types": ["vite/client"]
 	},
-	"include": ["src"],
-	"exclude": ["node_modules"]
+	"include": ["src"]
 }

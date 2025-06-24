@@ -1,9 +1,4 @@
 {
-	"extends": ["@tsconfig/node24", "@tsconfig/node-ts"],
-	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "bundler"
-	},
-	"include": ["src"],
-	"exclude": ["node_modules", "dist"]
+	"extends": "tsconfig/node.json",
+	"include": ["src"]
 }

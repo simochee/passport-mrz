@@ -21,10 +21,9 @@
 		"test": "vitest run"
 	},
 	"devDependencies": {
-		"@tsconfig/node-ts": "^23.6.1",
-		"@tsconfig/node24": "^24.0.1",
-		"unbuild": "^3.5.0",
+		"tsconfig": "workspace:*",
 		"typescript": "^5.8.3",
+		"unbuild": "^3.5.0",
 		"vitest": "^2.1.8"
 	}
 }
