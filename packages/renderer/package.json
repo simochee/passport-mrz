@@ -46,7 +46,7 @@
 	],
 	"scripts": {
 		"build": "unbuild",
-		"dev": "tsx src/cli"
+		"bin": "tsx src/cli"
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "^19.8.1",
