@@ -29,7 +29,10 @@ export function renderMRZToCanvas(
 	canvas.width = width;
 	canvas.height = height;
 
-	const ctx = canvas.getContext("2d")!;
+	const ctx = canvas.getContext("2d");
+	if (!ctx) {
+		throw new Error("Canvas context not available");
+	}
 
 	// 背景を描画
 	ctx.fillStyle = backgroundColor;

@@ -50,7 +50,10 @@ describe("formatName", () => {
 	});
 
 	it("should use full length for primary when secondary is empty", () => {
-		const result = formatName("VERYLONGFAMILYNAMEHEREVERYLONGFAMILYNAMEHERE", "");
+		const result = formatName(
+			"VERYLONGFAMILYNAMEHEREVERYLONGFAMILYNAMEHERE",
+			"",
+		);
 		expect(result).toHaveLength(39);
 		expect(result).toBe("VERYLONGFAMILYNAMEHEREVERYLONGFAMILYNAM");
 	});
