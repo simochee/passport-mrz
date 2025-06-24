@@ -1,6 +1,7 @@
 {
 	"name": "@simochee/passport-mrz-renderer",
 	"version": "1.0.0",
+	"description": "",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
@@ -13,25 +14,26 @@
 			"default": "./dist/index.mjs"
 		}
 	},
+	"bin": "./bin/index.mjs",
 	"files": [
 		"dist"
 	],
 	"scripts": {
 		"build": "unbuild",
-		"dev": "unbuild --stub"
+		"dev": "tsx src/cli"
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "^19.8.1",
-		"@rollup/plugin-url": "^8.0.2",
 		"@tsconfig/node-ts": "^23.6.1",
 		"@tsconfig/node24": "^24.0.1",
 		"@types/node": "^24.0.3",
-		"rollup-plugin-copy": "^3.5.0",
+		"tsx": "^4.20.3",
 		"typescript": "^5.8.3",
 		"unbuild": "^3.5.0"
 	},
 	"dependencies": {
 		"@simochee/passport-mrz-builder": "workspace:*",
-		"canvas": "^2.11.2"
+		"canvas": "^3.1.1",
+		"citty": "^0.1.6"
 	}
 }

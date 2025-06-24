@@ -15,8 +15,9 @@ export async function renderMRZToPNG(
 ): Promise<Buffer> {
 	// OCR-Bフォントを登録
 	try {
-		registerFont("./OCRB.ttf", { family: "OCRB" });
+		registerFont("./assets/OCRB.ttf", { family: "OCRB" });
 	} catch (_error) {
+		console.log(_error);
 		console.warn("OCR-B font not found, using default font");
 	}
 
