@@ -1,4 +1,5 @@
-import { Reset } from "@carbon/icons-react";
+import { Copy, Reset } from "@carbon/icons-react";
+import { buildMrzLines } from "@simochee/passport-mrz-builder";
 import { useForm, useStore } from "@tanstack/react-form";
 import { useEffect } from "react";
 import { DEFAULT_VALUES } from "../hooks/useInitialValues";
@@ -38,6 +39,23 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 		setValues(DEFAULT_VALUES);
 	};
 
+	const copy = () => {
+		navigator.clipboard.writeText(
+			buildMrzLines({
+				documentType: values.type,
+				issuingState: values.countryCode,
+				documentNumber: values.passportNo,
+				primaryIdentifier: values.surname,
+				secondaryIdentifier: values.givenNames,
+				nationality: values.nationality,
+				dateOfBirth: values.dateOfBirth,
+				personalNumber: values.personalNo,
+				sex: values.sex,
+				dateOfExpiry: values.dateOfExpiry,
+			}).join("\n"),
+		);
+	};
+
 	useEffect(() => {
 		persist(values);
 		onChange(values);
@@ -46,6 +64,9 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 	return (
 		<div className="grid gap-6">
 			<div className="flex gap-2 justify-center flex-wrap">
+				<BaseButton icon={Copy} onClick={copy}>
+					MRZをコピー
+				</BaseButton>
 				<ExportButton input={values} />
 				<ShareButton input={values} />
 				<FakerButton onClick={setValues} />
