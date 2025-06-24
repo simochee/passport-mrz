@@ -1,11 +1,11 @@
 # @simochee/passport-mrz-builder
 
-<!-- automd:badges color="red" github="simochee/passport-mrz-simulator" license name="@simochee/passport-mrz-builder" bundlephobia -->
+<!-- automd:badges color="red" github="simochee/passport-mrz" license name="@simochee/passport-mrz-builder" bundlephobia -->
 
 [![npm version](https://img.shields.io/npm/v/@simochee/passport-mrz-builder?color=red)](https://npmjs.com/package/@simochee/passport-mrz-builder)
 [![npm downloads](https://img.shields.io/npm/dm/@simochee/passport-mrz-builder?color=red)](https://npm.chart.dev/@simochee/passport-mrz-builder)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@simochee/passport-mrz-builder?color=red)](https://bundlephobia.com/package/@simochee/passport-mrz-builder)
-[![license](https://img.shields.io/github/license/simochee/passport-mrz-simulator?color=red)](https://github.com/simochee/passport-mrz-simulator/blob/main/LICENSE)
+[![license](https://img.shields.io/github/license/simochee/passport-mrz?color=red)](https://github.com/simochee/passport-mrz/blob/main/LICENSE)
 
 <!-- /automd -->
 
@@ -118,7 +118,7 @@ Where:
 ## Related
 
 - [Passport MRZ Simulator](https://passport-mrz.simochee.net) - Interactive web app using this library
-- [@simochee/passport-mrz-renderer](https://github.com/simochee/passport-mrz-simulator/tree/main/packages/renderer) - Render MRZ as images
+- [@simochee/passport-mrz-renderer](https://github.com/simochee/passport-mrz/tree/main/packages/renderer) - Render MRZ as images
 
 ## License
 
