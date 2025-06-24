@@ -25,7 +25,7 @@ export const parseHash = (): Partial<PassportInput> => {
 
 	const url = new URL(window.location.href);
 	url.hash = "";
-	window.history.replaceState({}, "", url.toString());
+	window.history.replaceState({}, "", url.href);
 
 	return {
 		type: values.t,

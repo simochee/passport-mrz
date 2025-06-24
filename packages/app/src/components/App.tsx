@@ -1,12 +1,12 @@
 import { buildMrzLines } from "@simochee/passport-mrz-builder";
 import { useState } from "react";
-import { getInitialValues } from "../utils/form";
+import { useInitialValues } from "../hooks/useInitialValues";
 import { ExportButton } from "./ExportButton";
 import { PassportForm } from "./PassportForm";
 import { ShareButton } from "./ShareButton";
 
 export const App: React.FC = () => {
-	const initialValues = getInitialValues();
+	const initialValues = useInitialValues();
 	const [values, setValues] = useState(initialValues);
 
 	const mrzLines = buildMrzLines({
