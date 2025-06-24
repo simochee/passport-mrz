@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'OCRB';
-  src: url('./assets/OCRB.woff2') format('woff2');
+  src: url('./assets/OCRB.woff2') format('woff2'),
+       url('./assets/OCRB.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
