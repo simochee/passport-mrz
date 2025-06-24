@@ -29,6 +29,12 @@ importers:
 
   packages/builder:
     devDependencies:
+      '@tsconfig/node-ts':
+        specifier: ^23.6.1
+        version: 23.6.1
+      '@tsconfig/node24':
+        specifier: ^24.0.1
+        version: 24.0.1
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
