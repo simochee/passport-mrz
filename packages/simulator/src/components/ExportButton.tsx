@@ -30,7 +30,11 @@ export const ExportButton: React.FC<Props> = ({ input }) => {
 		// ダウンロード用のリンク要素を作成
 		const link = document.createElement("a");
 		link.href = dataURL;
-		link.download = "mrz-passport.png";
+		link.download =
+			`${input.passportNo}-${input.surname}_${input.givenNames}.png`.replace(
+				/ /g,
+				"_",
+			);
 
 		// リンクをクリックしてダウンロード実行
 		document.body.appendChild(link);
