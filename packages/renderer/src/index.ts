@@ -1,6 +1,5 @@
 import type { Input } from "@simochee/passport-mrz-builder";
 import { createCanvas, registerFont } from "canvas";
-import fontPath from "ocrb-webfont/OCRB.ttf";
 import { renderMRZToCanvas } from "./renderer";
 import type { RenderOptions } from "./types";
 
@@ -16,7 +15,7 @@ export async function renderMRZToPNG(
 ): Promise<Buffer> {
 	// OCR-Bフォントを登録
 	try {
-		registerFont(fontPath, { family: "OCRB" });
+		registerFont("./OCRB.ttf", { family: "OCRB" });
 	} catch (_error) {
 		console.warn("OCR-B font not found, using default font");
 	}

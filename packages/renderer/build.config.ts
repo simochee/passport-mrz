@@ -1,4 +1,4 @@
-import url from "@rollup/plugin-url";
+import copy from "rollup-plugin-copy";
 import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
@@ -12,7 +12,16 @@ export default defineBuildConfig({
 	hooks: {
 		"rollup:options"(_ctx, options) {
 			options.plugins ||= [];
-			options.plugins.push(url());
+			options.plugins.push(
+				copy({
+					targets: [
+						{
+							src: "../ocrb-webfont/assets/OCRB.ttf",
+							dest: "dist",
+						},
+					],
+				}),
+			);
 		},
 	},
 });
