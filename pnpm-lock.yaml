@@ -32,6 +32,9 @@ importers:
       '@simochee/passport-mrz-builder':
         specifier: workspace:*
         version: link:../builder
+      '@simochee/passport-mrz-renderer':
+        specifier: workspace:*
+        version: link:../renderer
       '@tanstack/react-form':
         specifier: ^1.12.3
         version: 1.12.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)

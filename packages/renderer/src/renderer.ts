@@ -1,5 +1,5 @@
 import { buildMrzLines, type Input } from "@simochee/passport-mrz-builder";
-import { type Canvas, createCanvas } from "canvas";
+import { type Canvas, createCanvas, registerFont } from "canvas";
 
 /**
  * MRZを描画したキャンバスを生成する関数
@@ -25,6 +25,8 @@ export function renderMRZToCanvas(input: Input): Canvas {
 	// 四方に16pxの余白を付けたキャンバスサイズ
 	const width = Math.ceil(textWidth + padding * 2);
 	const height = Math.ceil(textHeight + padding * 2);
+
+	registerFont("./assets/OCRB.ttf", { family: "OCRB" });
 
 	// キャンバスを生成
 	const canvas = createCanvas(width, height);

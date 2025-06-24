@@ -1,5 +1,4 @@
 import type { Input } from "@simochee/passport-mrz-builder";
-import { registerFont } from "canvas";
 import { renderMRZToCanvas } from "./renderer";
 
 /**
@@ -7,18 +6,11 @@ import { renderMRZToCanvas } from "./renderer";
  * @param input パスポート情報
  * @returns PNG画像のBuffer
  */
-export async function renderMRZToPNG(input: Input): Promise<Buffer> {
-	// OCR-Bフォントを登録
-	try {
-		registerFont("./assets/OCRB.ttf", { family: "OCRB" });
-	} catch (_error) {
-		console.log(_error);
-		console.warn("OCR-B font not found, using default font");
-	}
-
-	// MRZを描画したキャンバスを生成
+const renderMRZToPNG = async (input: Input): Promise<Buffer> => {
 	const canvas = renderMRZToCanvas(input);
 
 	// PNG Bufferを生成
 	return canvas.toBuffer("image/png");
-}
+};
+
+export { renderMRZToCanvas, renderMRZToPNG };
