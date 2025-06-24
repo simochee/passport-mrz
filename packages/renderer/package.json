@@ -1,8 +1,32 @@
 {
 	"name": "@simochee/passport-mrz-renderer",
 	"version": "1.0.0",
-	"description": "",
+	"description": "A versatile rendering library for converting passport MRZ strings into high-quality PNG images with OCR-B font support for both browser and Node.js environments",
 	"type": "module",
+	"keywords": [
+		"mrz",
+		"passport",
+		"rendering",
+		"png",
+		"ocr-b",
+		"canvas",
+		"image-generation",
+		"travel-document"
+	],
+	"author": "simochee",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/simochee/passport-mrz-simulator.git",
+		"directory": "packages/renderer"
+	},
+	"bugs": {
+		"url": "https://github.com/simochee/passport-mrz-simulator/issues"
+	},
+	"homepage": "https://github.com/simochee/passport-mrz-simulator#readme",
+	"engines": {
+		"node": ">=16.0.0"
+	},
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",

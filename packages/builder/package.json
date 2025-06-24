@@ -1,7 +1,27 @@
 {
 	"name": "@simochee/passport-mrz-builder",
 	"version": "1.0.0",
+	"description": "A powerful TypeScript library for generating TD3 passport MRZ (Machine Readable Zone) strings with robust validation and encoding compliance",
 	"type": "module",
+	"keywords": [
+		"mrz",
+		"passport",
+		"td3",
+		"machine-readable-zone",
+		"travel-document",
+		"validation"
+	],
+	"author": "simochee",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/simochee/passport-mrz-simulator.git",
+		"directory": "packages/builder"
+	},
+	"bugs": {
+		"url": "https://github.com/simochee/passport-mrz-simulator/issues"
+	},
+	"homepage": "https://github.com/simochee/passport-mrz-simulator#readme",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
