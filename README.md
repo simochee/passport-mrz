@@ -1,0 +1,14 @@
+# Passport MRZ Utilities
+
+> 🛂 Interactive passport MRZ (Machine Readable Zone) simulator and utilities
+
+## Simulator
+
+Visit [passport-mrz.simochee.net](https://passport-mrz.simochee.net) to try the interactive simulator.
+
+## Packages
+
+| Package | Version | License | Description |
+| --- | --- | --- | --- |
+| [@simochee/passport-mrz-builder](./packages/builder) | [![npm version](https://img.shields.io/npm/v/@simochee/passport-mrz-builder?color=red)](https://npmjs.com/package/@simochee/passport-mrz-builder) | [![license](https://img.shields.io/github/license/simochee/passport-mrz-simulator?color=red)](https://github.com/simochee/passport-mrz-simulator/blob/main/LICENSE) | Generate MRZ strings for TD3 passport format |
+| [@simochee/passport-mrz-renderer](./packages/renderer) | [![npm version](https://img.shields.io/npm/v/@simochee/passport-mrz-renderer?color=red)](https://npmjs.com/package/@simochee/passport-mrz-renderer) | [![license](https://img.shields.io/github/license/simochee/passport-mrz-simulator?color=red)](https://github.com/simochee/passport-mrz-simulator/blob/main/LICENSE) | Render MRZ as images using OCR-B font |
