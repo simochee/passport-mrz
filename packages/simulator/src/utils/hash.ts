@@ -52,7 +52,7 @@ export const serializeHash = (input: PassportInput): string => {
 		["b", input.dateOfBirth],
 		["i", input.personalNo],
 		["x", input.sex],
-		["e", input.dateOfBirth],
+		["e", input.dateOfExpiry],
 	];
 
 	return entries
