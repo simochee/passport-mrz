@@ -103,15 +103,6 @@ export function drawMRZText(
 
 		// テキストを描画
 		ctx.fillText(line, startX, y);
-
-		// デバッグ用: テキストの枠線を赤で描画
-		const textMetrics = ctx.measureText(line);
-		const textWidth = textMetrics.width;
-		const textHeight = config.fontSize;
-
-		ctx.strokeStyle = "red";
-		ctx.lineWidth = 2;
-		ctx.strokeRect(startX, y, textWidth, textHeight);
 	});
 }
 
