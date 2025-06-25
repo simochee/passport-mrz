@@ -20,8 +20,8 @@ export const DEFAULT_RENDER_CONFIG: RenderConfig = {
 	fontSize: 60,
 	backgroundColor: "#ffffff",
 	textColor: "#000000",
-	lineHeight: 1.2,
-	padding: 48,
+	lineHeight: 1,
+	padding: 0,
 	fontFamily: "OCRB, monospace",
 };
 
@@ -32,15 +32,15 @@ export const DEFAULT_RENDER_CONFIG: RenderConfig = {
  * @returns 計算されたキャンバスサイズ
  */
 export function calculateCanvasSize(
-	mrzLines: string[],
+	_mrzLines: string[],
 	config: RenderConfig,
 ): { width: number; height: number } {
 	// OCR-Bフォントの文字幅は約0.7倍
 	const charWidth = config.fontSize * 0.7;
 	const textWidth = 44 * charWidth; // MRZは44文字固定
-	const textHeight = config.fontSize * config.lineHeight * mrzLines.length;
+	const textHeight = config.fontSize * config.lineHeight * 2; // 2行固定
 
-	// 四方に余白を付けたキャンバスサイズ
+	// 余白なしのキャンバスサイズ
 	const width = Math.ceil(textWidth + config.padding * 2);
 	const height = Math.ceil(textHeight + config.padding * 2);
 
@@ -84,19 +84,34 @@ export function drawMRZText(
 	ctx: CanvasRenderingContext2D,
 	mrzLines: string[],
 	config: RenderConfig,
-	canvasWidth: number,
+	_canvasWidth: number,
 ): void {
 	// フォント設定
 	ctx.fillStyle = config.textColor;
 	ctx.font = `${config.fontSize}px ${config.fontFamily}`;
-	ctx.textAlign = "center";
+	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 
-	// MRZテキストを描画
-	const startY = config.padding;
-	mrzLines.forEach((line, index) => {
+	// 文字間隔を-1.8%に設定
+	ctx.letterSpacing = "-1.8%";
+
+	// MRZテキストを描画（2行のみ）
+	const startY = 0;
+	const startX = 0;
+	mrzLines.slice(0, 2).forEach((line, index) => {
 		const y = startY + config.fontSize * config.lineHeight * index;
-		ctx.fillText(line, canvasWidth / 2, y);
+
+		// テキストを描画
+		ctx.fillText(line, startX, y);
+
+		// デバッグ用: テキストの枠線を赤で描画
+		const textMetrics = ctx.measureText(line);
+		const textWidth = textMetrics.width;
+		const textHeight = config.fontSize;
+
+		ctx.strokeStyle = "red";
+		ctx.lineWidth = 2;
+		ctx.strokeRect(startX, y, textWidth, textHeight);
 	});
 }
 

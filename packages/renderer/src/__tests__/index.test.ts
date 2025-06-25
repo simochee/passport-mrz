@@ -4,7 +4,7 @@ import { renderMRZToCanvas, renderMRZToPNG } from "../index";
 
 describe("index exports", () => {
 	const testInput: Input = {
-		documentType: "P",
+		documentType: "PP",
 		issuingCountry: "JPN",
 		surname: "YAMADA",
 		givenNames: "TARO",
@@ -47,7 +47,7 @@ describe("index exports", () => {
 
 	it("should generate different PNG for different input", async () => {
 		const differentInput: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingCountry: "USA",
 			surname: "SMITH",
 			givenNames: "JOHN",

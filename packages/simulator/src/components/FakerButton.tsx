@@ -27,7 +27,7 @@ export const FakerButton: React.FC<Props> = ({ onClick }) => {
 		const givenNames = `${firstName} ${middleName}`.trim();
 
 		const values: PassportInput = {
-			type: "P",
+			type: "PP",
 			countryCode,
 			passportNo: `${faker.string.alpha(2).toUpperCase()}${faker.string.numeric(7)}`,
 			surname: lastName.toUpperCase(),

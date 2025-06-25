@@ -79,7 +79,7 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					{(field) => (
 						<TextField
 							label="型 / Type"
-							note="パスポートは P で固定"
+							note="パスポートは PP で固定"
 							field={field}
 						/>
 					)}

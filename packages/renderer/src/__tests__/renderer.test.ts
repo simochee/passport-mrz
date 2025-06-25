@@ -13,7 +13,7 @@ import {
 
 describe("renderMRZToCanvas", () => {
 	const testInput: Input = {
-		documentType: "P",
+		documentType: "PP",
 		issuingCountry: "JPN",
 		surname: "YAMADA",
 		givenNames: "TARO",
@@ -46,7 +46,7 @@ describe("renderMRZToCanvas", () => {
 
 	it("should handle different input data", () => {
 		const differentInput: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingCountry: "USA",
 			surname: "SMITH",
 			givenNames: "JOHN MICHAEL",
@@ -82,7 +82,7 @@ describe("renderMRZToCanvas", () => {
 
 	it("should handle empty personal number", () => {
 		const inputWithoutPersonalNumber: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingCountry: "JPN",
 			surname: "YAMADA",
 			givenNames: "TARO",

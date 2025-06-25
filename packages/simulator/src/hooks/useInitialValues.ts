@@ -5,7 +5,7 @@ import { retrieve } from "../utils/persistence";
 import { parseQuery } from "../utils/query";
 
 export const DEFAULT_VALUES: PassportInput = {
-	type: "P",
+	type: "PP",
 	countryCode: "",
 	passportNo: "",
 	surname: "",

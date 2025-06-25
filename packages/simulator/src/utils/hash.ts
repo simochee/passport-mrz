@@ -2,10 +2,10 @@ import type { PassportInput } from "../types/passport";
 
 /**
  * URL fragment形式の定義
- * 形式: t=P&c=JPN&p=ABC123456&s=YAMADA&g=TARO+JIRO&n=JPN&b=900101&i=123456789&x=M&e=300101
+ * 形式: t=PP&c=JPN&p=ABC123456&s=YAMADA&g=TARO+JIRO&n=JPN&b=900101&i=123456789&x=M&e=300101
  *
  * パラメータ:
- * t: type (P=パスポート)
+ * t: type (PP=パスポート)
  * c: countryCode (発行国)
  * p: passportNo (パスポート番号)
  * s: surname (姓)

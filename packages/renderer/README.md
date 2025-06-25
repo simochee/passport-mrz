@@ -46,7 +46,7 @@ import type { Input } from '@simochee/passport-mrz-builder'
 import { renderMRZToPNG } from '@simochee/passport-mrz-renderer'
 
 const input: Input = {
-  documentType: 'P',
+  documentType: 'PP',
   issuingState: 'JPN',
   documentNumber: 'XS1234567',
   primaryIdentifier: 'GAIMU',

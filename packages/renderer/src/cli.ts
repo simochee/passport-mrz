@@ -64,7 +64,7 @@ const main = defineCommand({
 	},
 	async run({ args }) {
 		const inputData: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "JPN",
 			documentNumber: "12345678",
 			primaryIdentifier: "",
