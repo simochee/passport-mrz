@@ -29,5 +29,5 @@ jobs:
       - name: test
         run: pnpm run -r test
 
-      - name: Lint
+      - name: lint
         run: pnpm exec biome check .

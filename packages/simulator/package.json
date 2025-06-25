@@ -10,15 +10,15 @@
 		"preview": "wrangler pages dev dist"
 	},
 	"devDependencies": {
-		"@cloudflare/vite-plugin": "^1.7.4",
+		"@cloudflare/vite-plugin": "^1.7.5",
 		"@tailwindcss/vite": "^4.1.10",
 		"@types/react": "^19.1.8",
 		"@types/react-dom": "^19.1.6",
 		"@vitejs/plugin-react": "^4.6.0",
 		"tailwindcss": "^4.1.10",
 		"tsconfig": "workspace:*",
-		"vite": "^6.3.5",
-		"wrangler": "^4.21.0"
+		"vite": "^7.0.0",
+		"wrangler": "^4.21.2"
 	},
 	"dependencies": {
 		"@carbon/icons-react": "^11.62.0",
