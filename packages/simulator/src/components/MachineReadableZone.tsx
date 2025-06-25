@@ -1,6 +1,8 @@
+import ocrbcss from "ocrb-webfont?url";
 import { buildMrzLines } from "@simochee/passport-mrz-builder";
 import { renderMRZToCanvas } from "@simochee/passport-mrz-renderer";
 import { useEffect, useMemo, useState } from "react";
+import WebFont from "webfontloader";
 import type { PassportInput } from "../types/passport";
 
 type Props = {
@@ -37,47 +39,22 @@ export const MachineReadableZone: React.FC<Props> = ({ values }) => {
 			return;
 		}
 
-		const generateDataUrl = async () => {
-			try {
-				const canvas = await renderMRZToCanvas(input);
-				const url = canvas.toDataURL("image/png");
-				console.log("memo", url.length);
-				setDataUrl(url);
-			} catch (error) {
-				console.error("Failed to generate MRZ image:", error);
-				setDataUrl(undefined);
-			}
-		};
-
-		generateDataUrl();
+		renderMRZToCanvas(input).then((canvas) => {
+			const url = canvas.toDataURL("image/png");
+			setDataUrl(url);
+		});
 	}, [input, fontLoaded]);
 
 	useEffect(() => {
-		const initializeFont = async () => {
-			try {
-				await document.fonts.ready;
-				await renderMRZToCanvas({
-					documentType: "",
-					issuingState: "",
-					documentNumber: "",
-					primaryIdentifier: "",
-					secondaryIdentifier: "",
-					nationality: "",
-					dateOfBirth: "",
-					personalNumber: "",
-					sex: "",
-					dateOfExpiry: "",
-				});
-				await new Promise((resolve) => setTimeout(resolve, 0));
+		WebFont.load({
+			custom: {
+				families: ["OCRB"],
+				urls: [ocrbcss],
+			},
+			active() {
 				setFontLoaded(true);
-			} catch (error) {
-				console.error("Failed to initialize font:", error);
-				// フォント読み込みに失敗してもアプリは動作させる
-				setFontLoaded(true);
-			}
-		};
-
-		initializeFont();
+			},
+		});
 	}, []);
 
 	return (
