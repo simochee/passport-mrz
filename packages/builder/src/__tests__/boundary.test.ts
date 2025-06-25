@@ -114,7 +114,7 @@ describe("Boundary Conditions", () => {
 	describe("buildMrzLines boundary tests", () => {
 		it("should handle all fields at maximum length", () => {
 			const input: Input = {
-				documentType: "P",
+				documentType: "PP",
 				issuingState: "ABC", // 3 chars
 				primaryIdentifier: "A".repeat(50), // Very long
 				secondaryIdentifier: "B".repeat(50), // Very long
@@ -158,7 +158,7 @@ describe("Boundary Conditions", () => {
 
 		it("should handle mixed empty and filled fields", () => {
 			const input: Input = {
-				documentType: "P",
+				documentType: "PP",
 				issuingState: "",
 				primaryIdentifier: "SMITH",
 				secondaryIdentifier: "",
@@ -184,7 +184,7 @@ describe("Boundary Conditions", () => {
 	describe("Performance boundary tests", () => {
 		it("should handle large inputs efficiently", () => {
 			const largeInput: Input = {
-				documentType: "P",
+				documentType: "PP",
 				issuingState: "TEST",
 				primaryIdentifier: "A".repeat(1000),
 				secondaryIdentifier: "B".repeat(1000),
@@ -207,7 +207,7 @@ describe("Boundary Conditions", () => {
 
 		it("should handle repeated calculations consistently", () => {
 			const input: Input = {
-				documentType: "P",
+				documentType: "PP",
 				issuingState: "JPN",
 				primaryIdentifier: "TEST",
 				secondaryIdentifier: "USER",

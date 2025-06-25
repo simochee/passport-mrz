@@ -7,7 +7,7 @@ import type { Input } from "../input";
 describe("Integration Tests", () => {
 	it("should generate real-world passport MRZ correctly", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "JPN",
 			primaryIdentifier: "YAMADA",
 			secondaryIdentifier: "TARO",
@@ -22,7 +22,7 @@ describe("Integration Tests", () => {
 		const [line1, line2] = buildMrzLines(input);
 
 		// Expected format verification
-		expect(line1).toBe("P<JPNYAMADA<<TARO<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+		expect(line1).toBe("PPJPNYAMADA<<TARO<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 		expect(line2).toBe("XS12345673JPN9001011M30123161234567890123452");
 
 		// Verify total length
@@ -32,7 +32,7 @@ describe("Integration Tests", () => {
 
 	it("should handle complex name formatting scenarios", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "DEU",
 			primaryIdentifier: "VON-MÜLLER-SCHMIDT",
 			secondaryIdentifier: "ANNA-MARIA JOSÉ",
@@ -56,7 +56,7 @@ describe("Integration Tests", () => {
 
 	it("should validate end-to-end MRZ components individually", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "USA",
 			primaryIdentifier: "SMITH",
 			secondaryIdentifier: "JOHN MICHAEL",
@@ -97,7 +97,7 @@ describe("Integration Tests", () => {
 
 	it("should handle minimal passport data", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "X",
 			primaryIdentifier: "A",
 			secondaryIdentifier: "",
@@ -114,13 +114,13 @@ describe("Integration Tests", () => {
 		expect(line2).toHaveLength(44);
 
 		// Verify minimal data is properly formatted
-		expect(line1).toMatch(/^P<X</);
+		expect(line1).toMatch(/^PPX</);
 		expect(line2).toMatch(/^1/);
 	});
 
 	it("should generate consistent results for identical inputs", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "FRA",
 			primaryIdentifier: "DUPONT",
 			secondaryIdentifier: "MARIE",
@@ -141,7 +141,7 @@ describe("Integration Tests", () => {
 
 	it("should properly format line endings and spacing", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "CAN",
 			primaryIdentifier: "WILSON",
 			secondaryIdentifier: "ROBERT",
@@ -170,7 +170,7 @@ describe("Integration Tests", () => {
 
 	it("should validate check digit calculations in context", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "AUS",
 			primaryIdentifier: "BROWN",
 			secondaryIdentifier: "DAVID",
@@ -206,7 +206,7 @@ describe("Integration Tests", () => {
 describe("Edge Case Integration", () => {
 	it("should handle passport with all maximum length fields", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "ABC", // 3 char max
 			primaryIdentifier: "VERYLONGFAMILYNAMETHATSHOULDBETRUNCATED", // Long name
 			secondaryIdentifier: "VERYLONGGIVENNAMETHATSHOULDALSOBETRUNCATED", // Long given name
@@ -224,13 +224,13 @@ describe("Edge Case Integration", () => {
 		expect(line2).toHaveLength(44);
 
 		// Verify truncation behavior
-		expect(line1).toMatch(/^P<ABC/);
+		expect(line1).toMatch(/^PPABC/);
 		expect(line2).toMatch(/^123456789/);
 	});
 
 	it("should handle passport with unicode and special characters", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "FRA",
 			primaryIdentifier: "FRANÇOIS-ANDRÉ",
 			secondaryIdentifier: "JOSÉ-MARÍA",

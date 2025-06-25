@@ -5,7 +5,7 @@ import type { Input } from "../input";
 describe("buildMrzLines", () => {
 	it("should generate correct MRZ lines for a standard passport", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "JPN",
 			primaryIdentifier: "YAMADA",
 			secondaryIdentifier: "TARO",
@@ -24,8 +24,8 @@ describe("buildMrzLines", () => {
 		// Line 2 should be 44 characters
 		expect(line2).toHaveLength(44);
 
-		// Line 1 format: P<issuingState<primaryIdentifier<<secondaryIdentifier<<<<<<<<<<
-		expect(line1).toMatch(/^P<JPN/);
+		// Line 1 format: PP<issuingState<primaryIdentifier<<secondaryIdentifier<<<<<<<<<<
+		expect(line1).toMatch(/^PPJPN/);
 		expect(line1).toContain("YAMADA<<TARO");
 
 		// Line 2 should start with document number
@@ -34,7 +34,7 @@ describe("buildMrzLines", () => {
 
 	it("should handle empty personal number", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "USA",
 			primaryIdentifier: "SMITH",
 			secondaryIdentifier: "JOHN",
@@ -49,13 +49,13 @@ describe("buildMrzLines", () => {
 
 		expect(line1).toHaveLength(44);
 		expect(line2).toHaveLength(44);
-		expect(line1).toMatch(/^P<USA/);
+		expect(line1).toMatch(/^PPUSA/);
 		expect(line2).toMatch(/^US1234567/);
 	});
 
 	it("should handle long names correctly", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "DEU",
 			primaryIdentifier: "VERYVERYLONGSURNAME",
 			secondaryIdentifier: "VERYLONGGIVENNAME",
@@ -70,12 +70,12 @@ describe("buildMrzLines", () => {
 
 		expect(line1).toHaveLength(44);
 		expect(line2).toHaveLength(44);
-		expect(line1).toMatch(/^P<DEU/);
+		expect(line1).toMatch(/^PPDEU/);
 	});
 
 	it("should handle special characters in names", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "FRA",
 			primaryIdentifier: "MÜLLER",
 			secondaryIdentifier: "JOSÉ",
@@ -90,12 +90,12 @@ describe("buildMrzLines", () => {
 
 		expect(line1).toHaveLength(44);
 		expect(line2).toHaveLength(44);
-		expect(line1).toMatch(/^P<FRA/);
+		expect(line1).toMatch(/^PPFRA/);
 	});
 
 	it("should validate MRZ format requirements", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "CAN",
 			primaryIdentifier: "WILSON",
 			secondaryIdentifier: "ALICE",
@@ -119,7 +119,7 @@ describe("buildMrzLines", () => {
 		expect(line2).toMatch(/^[A-Z0-9<]+$/);
 
 		// Document type should be at the beginning of line 1
-		expect(line1[0]).toBe("P");
+		expect(line1.substring(0, 2)).toBe("PP");
 
 		// Issuing state should follow
 		expect(line1.substring(2, 5)).toBe("CAN");
@@ -127,7 +127,7 @@ describe("buildMrzLines", () => {
 
 	it("should correctly calculate and include check digits", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "JPN",
 			primaryIdentifier: "YAMADA",
 			secondaryIdentifier: "TARO",
@@ -161,7 +161,7 @@ describe("buildMrzLines", () => {
 
 	it("should handle undefined personal number correctly", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "USA",
 			primaryIdentifier: "SMITH",
 			secondaryIdentifier: "JOHN",
@@ -184,7 +184,7 @@ describe("buildMrzLines", () => {
 
 	it("should handle maximum length fields correctly", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "GER", // 3 chars max
 			primaryIdentifier: "VERYLONGFAMILYNAMEEXCEEDINGTYPICALLENGTH", // Will be truncated
 			secondaryIdentifier: "VERYLONGGIVENNAME", // Will be truncated if needed
@@ -200,13 +200,13 @@ describe("buildMrzLines", () => {
 
 		expect(line1).toHaveLength(44);
 		expect(line2).toHaveLength(44);
-		expect(line1).toMatch(/^P<GER/);
+		expect(line1).toMatch(/^PPGER/);
 		expect(line2).toMatch(/^123456789/);
 	});
 
 	it("should handle minimum input correctly", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "A",
 			primaryIdentifier: "A",
 			secondaryIdentifier: "B",
@@ -222,7 +222,7 @@ describe("buildMrzLines", () => {
 
 		expect(line1).toHaveLength(44);
 		expect(line2).toHaveLength(44);
-		expect(line1).toMatch(/^P<A/);
+		expect(line1).toMatch(/^PPA/);
 	});
 
 	it("should handle different sex values correctly", () => {
@@ -235,7 +235,7 @@ describe("buildMrzLines", () => {
 
 		testCases.forEach(({ sex, expected }) => {
 			const input: Input = {
-				documentType: "P",
+				documentType: "PP",
 				issuingState: "JPN",
 				primaryIdentifier: "TEST",
 				secondaryIdentifier: "USER",

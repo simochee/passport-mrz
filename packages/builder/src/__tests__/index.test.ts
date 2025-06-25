@@ -9,7 +9,7 @@ describe("index exports", () => {
 
 	it("should work with exported function", () => {
 		const input: Input = {
-			documentType: "P",
+			documentType: "PP",
 			issuingState: "JPN",
 			primaryIdentifier: "TEST",
 			secondaryIdentifier: "USER",
@@ -24,7 +24,7 @@ describe("index exports", () => {
 
 		expect(line1).toHaveLength(44);
 		expect(line2).toHaveLength(44);
-		expect(line1).toMatch(/^P<JPN/);
+		expect(line1).toMatch(/^PPJPN/);
 		expect(line2).toMatch(/^TK1234567/);
 	});
 });

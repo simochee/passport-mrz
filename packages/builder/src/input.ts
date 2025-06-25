@@ -3,7 +3,7 @@
  * Follows TD3 format specification for passport documents according to ICAO 9303 standard.
  */
 export type Input = {
-	/** Document Type (typically "P" for passport) */
+	/** Document Type (2 characters: "PP" for ordinary passport, "PE" for emergency, "PD" for diplomatic, "PS" for service) */
 	documentType: string;
 	/** Issuing State (ISO 3166-1 alpha-3 country code) */
 	issuingState: string;

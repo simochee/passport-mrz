@@ -16,8 +16,7 @@ import type { Input } from "./input";
  */
 export const buildMrzLines = (input: Input): [string, string] => {
 	const line1 =
-		formatField(input.documentType, 1) +
-		" " +
+		formatField(input.documentType, 2) +
 		formatField(input.issuingState, 3) +
 		formatName(input.primaryIdentifier, input.secondaryIdentifier);
 
