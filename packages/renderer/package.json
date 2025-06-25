@@ -41,7 +41,9 @@
 	"scripts": {
 		"build": "unbuild",
 		"dev": "unbuild --stub",
-		"bin": "tsx src/cli"
+		"bin": "tsx src/cli",
+		"test": "vitest",
+		"test:run": "vitest run"
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "^19.8.1",
@@ -49,7 +51,8 @@
 		"tsconfig": "workspace:*",
 		"tsx": "^4.20.3",
 		"typescript": "^5.8.3",
-		"unbuild": "^3.5.0"
+		"unbuild": "^3.5.0",
+		"vitest": "^2.0.0"
 	},
 	"dependencies": {
 		"@simochee/passport-mrz-builder": "workspace:*",
