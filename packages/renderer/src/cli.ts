@@ -1,4 +1,5 @@
 import { readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import type { Input } from "@simochee/passport-mrz-builder";
 import { defineCommand, runMain } from "citty";
 import pkg from "../package.json" with { type: "json" };
@@ -11,10 +12,15 @@ const main = defineCommand({
 		description: pkg.description,
 	},
 	args: {
-		output: {
-			type: "positional",
+		outputDir: {
+			type: "string",
+			description: "Output directory",
+			default: ".",
+		},
+		outputName: {
+			type: "string",
 			description:
-				"Output file path (supports placeholders like {documentNumber}, {primaryIdentifier}, etc.)",
+				"Output file name (supports placeholders like {documentNumber}, {primaryIdentifier}, etc.)",
 			default: "{documentNumber}-{primaryIdentifier}_{secondaryIdentifier}.png",
 		},
 		json: {
@@ -124,47 +130,49 @@ const main = defineCommand({
 		const pngBuffer = await renderMRZToPNG(inputData);
 
 		// プレイスホルダーを実際の値で置換（スペースはアンダースコアに変換）
-		let outputPath = args.output;
-		outputPath = outputPath.replace(
+		let outputName = args.outputName;
+		outputName = outputName.replace(
 			/\{documentType\}/g,
 			inputData.documentType.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{issuingState\}/g,
 			inputData.issuingState.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{documentNumber\}/g,
 			inputData.documentNumber.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{primaryIdentifier\}/g,
 			inputData.primaryIdentifier.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{secondaryIdentifier\}/g,
 			inputData.secondaryIdentifier.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{nationality\}/g,
 			inputData.nationality.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{dateOfBirth\}/g,
 			inputData.dateOfBirth.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{personalNumber\}/g,
 			(inputData.personalNumber || "").replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{sex\}/g,
 			inputData.sex.replace(/\s/g, "_"),
 		);
-		outputPath = outputPath.replace(
+		outputName = outputName.replace(
 			/\{dateOfExpiry\}/g,
 			inputData.dateOfExpiry.replace(/\s/g, "_"),
 		);
+
+		const outputPath = join(args.outputDir, outputName);
 
 		await writeFile(outputPath, pngBuffer);
 		console.log(`PNG file saved as ${outputPath}`);
