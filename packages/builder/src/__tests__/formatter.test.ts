@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { formatDate, formatField, formatName } from "./formatter";
+import {
+	finalizeLine,
+	formatDate,
+	formatField,
+	formatName,
+} from "../formatter";
 
 describe("formatName", () => {
 	it("should format standard names correctly", () => {
@@ -137,5 +142,32 @@ describe("formatField", () => {
 		expect(formatField("hello world", 15)).toBe("HELLO WORLD    ");
 		expect(formatField("Test123", 10)).toBe("TEST123   ");
 		expect(formatField("A B C 1 2 3", 15)).toBe("A B C 1 2 3    ");
+	});
+});
+
+describe("finalizeLine", () => {
+	it("should convert spaces to angle brackets", () => {
+		expect(finalizeLine("P JPN TEST USER")).toBe("P<JPN<TEST<USER");
+		expect(finalizeLine("HELLO WORLD")).toBe("HELLO<WORLD");
+	});
+
+	it("should handle strings with no spaces", () => {
+		expect(finalizeLine("ABCDEFG123")).toBe("ABCDEFG123");
+		expect(finalizeLine("")).toBe("");
+	});
+
+	it("should handle strings with only spaces", () => {
+		expect(finalizeLine("   ")).toBe("<<<");
+		expect(finalizeLine(" ")).toBe("<");
+	});
+
+	it("should handle mixed content", () => {
+		expect(finalizeLine("A B1 C2 D3")).toBe("A<B1<C2<D3");
+		expect(finalizeLine("P JPN YAMADA  TARO")).toBe("P<JPN<YAMADA<<TARO");
+	});
+
+	it("should handle strings with multiple consecutive spaces", () => {
+		expect(finalizeLine("A  B   C")).toBe("A<<B<<<C");
+		expect(finalizeLine("TEST     USER")).toBe("TEST<<<<<USER");
 	});
 });

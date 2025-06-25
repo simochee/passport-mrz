@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { Input } from "./index";
-import { buildMrzLines } from "./index";
+import type { Input } from "../index";
+import { buildMrzLines } from "../index";
 
 describe("index exports", () => {
 	it("should export buildMrzLines function", () => {

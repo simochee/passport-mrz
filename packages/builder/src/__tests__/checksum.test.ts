@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calculateCheckDigit } from "./checksum";
+import { calculateCheckDigit } from "../checksum";
 
 describe("calculateCheckDigit", () => {
 	it("should calculate correct check digit for numeric strings", () => {
@@ -53,5 +53,49 @@ describe("calculateCheckDigit", () => {
 		const result1 = calculateCheckDigit(input);
 		const result2 = calculateCheckDigit(input);
 		expect(result1).toBe(result2);
+	});
+
+	it("should handle lowercase letters as zero values", () => {
+		// Lowercase letters fall outside A-Z range, so they map to 0
+		expect(calculateCheckDigit("a")).toBe("0"); // lowercase 'a' maps to 0
+		expect(calculateCheckDigit("A")).toBe("0"); // uppercase 'A' maps to 10, (10 * 7) % 10 = 0
+		expect(calculateCheckDigit("abc")).toBe("0"); // all lowercase map to 0
+		expect(calculateCheckDigit("ABC")).toBe("5"); // uppercase letters have values
+	});
+
+	it("should handle very long strings", () => {
+		const longString = "A".repeat(100);
+		const result = calculateCheckDigit(longString);
+		expect(result).toMatch(/^[0-9]$/);
+	});
+
+	it("should handle personal number examples correctly", () => {
+		// Test with common personal number patterns
+		expect(calculateCheckDigit("12345678901234")).toBe("5");
+		expect(calculateCheckDigit("00000000000000")).toBe("0");
+		expect(calculateCheckDigit("ABCDEFGHIJKLMN")).toBe("1");
+	});
+
+	it("should handle real-world MRZ composite check digit calculation", () => {
+		// Example: TK00000014900101530123159123456789919
+		// This is the composite data for check digit calculation
+		const compositeData = "TK00000014900101530123159123456789919";
+		const result = calculateCheckDigit(compositeData.substring(0, 37)); // Without final check digit
+		expect(result).toBe("2");
+	});
+
+	it("should handle edge case with only special characters", () => {
+		expect(calculateCheckDigit("!@#$%^&*()")).toBe("0");
+		expect(calculateCheckDigit("---")).toBe("0");
+		expect(calculateCheckDigit("<><><>")).toBe("0");
+	});
+
+	it("should verify weighting position calculation", () => {
+		// Test that the modulo operation works correctly for positions
+		// Position 0: 1 * 7 = 7
+		// Position 1: 2 * 3 = 6
+		// Position 2: 3 * 1 = 3
+		// Sum: 7 + 6 + 3 = 16, 16 % 10 = 6
+		expect(calculateCheckDigit("123")).toBe("6");
 	});
 });

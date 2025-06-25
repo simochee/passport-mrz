@@ -6,4 +6,6 @@
  */
 
 export { buildMrzLines } from "./builder";
+export { calculateCheckDigit } from "./checksum";
+export { finalizeLine, formatDate, formatField, formatName } from "./formatter";
 export type { Input } from "./input";
