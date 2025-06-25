@@ -42,7 +42,7 @@
 		"build": "unbuild",
 		"dev": "unbuild --stub",
 		"bin": "tsx src/cli",
-		"bin:example": "tsx src/cli --json examples/XS1234567.json",
+		"bin:example": "tsx src/cli --json examples/XS1234567.json --outdir examples",
 		"test": "vitest",
 		"test:run": "vitest run"
 	},

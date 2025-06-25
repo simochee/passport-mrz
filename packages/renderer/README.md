@@ -90,12 +90,13 @@ Load input from JSON file:
 npx @simochee/passport-mrz-renderer --json input.json
 ```
 
-Custom output filename with placeholders:
+Custom output directory and filename with placeholders:
 
 ```bash
 npx @simochee/passport-mrz-renderer \
   --json input.json \
-  passport-{documentNumber}.png
+  --outdir ./output \
+  --filename passport-{documentNumber}.png
 ```
 
 ## Features
@@ -140,7 +141,8 @@ Canvas object with rendered MRZ text.
 ## CLI Options
 
 - `--json <file>` - Load input data from JSON file
-- `--output <filename>` - Output filename (default: `{documentNumber}-{primaryIdentifier}_{secondaryIdentifier}.png`)
+- `--outdir <directory>` - Output directory (default: current directory)
+- `--filename <name>` - Output filename (default: `{documentNumber}-{primaryIdentifier}_{secondaryIdentifier}.png`)
 - Individual passport fields: `--documentType`, `--issuingState`, `--documentNumber`, etc.
 
 ### Filename Placeholders
