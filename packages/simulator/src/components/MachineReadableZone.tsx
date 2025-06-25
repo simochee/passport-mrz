@@ -28,23 +28,35 @@ export const MachineReadableZone: React.FC<Props> = ({ values }) => {
 
 	const mrzString = buildMrzLines(input).join("\n");
 
-	const dataUrl = useMemo<string | undefined>(() => {
-		console.log("load", fontLoaded);
+	// dataUrlの生成を非同期で行うため、useEffectで管理
+	const [dataUrl, setDataUrl] = useState<string | undefined>();
+
+	useEffect(() => {
 		if (!fontLoaded) {
+			setDataUrl(undefined);
 			return;
 		}
 
-		const canvas = renderMRZToCanvas(input);
+		const generateDataUrl = async () => {
+			try {
+				const canvas = await renderMRZToCanvas(input);
+				const url = canvas.toDataURL("image/png");
+				console.log("memo", url.length);
+				setDataUrl(url);
+			} catch (error) {
+				console.error("Failed to generate MRZ image:", error);
+				setDataUrl(undefined);
+			}
+		};
 
-		console.log("memo", canvas.toDataURL("image/png").length);
-
-		return canvas.toDataURL("image/png");
+		generateDataUrl();
 	}, [input, fontLoaded]);
 
 	useEffect(() => {
-		document.fonts.ready
-			.then(() =>
-				renderMRZToCanvas({
+		const initializeFont = async () => {
+			try {
+				await document.fonts.ready;
+				await renderMRZToCanvas({
 					documentType: "",
 					issuingState: "",
 					documentNumber: "",
@@ -55,10 +67,17 @@ export const MachineReadableZone: React.FC<Props> = ({ values }) => {
 					personalNumber: "",
 					sex: "",
 					dateOfExpiry: "",
-				}),
-			)
-			.then(() => new Promise((resolve) => setTimeout(resolve, 0)))
-			.then(() => setFontLoaded(true));
+				});
+				await new Promise((resolve) => setTimeout(resolve, 0));
+				setFontLoaded(true);
+			} catch (error) {
+				console.error("Failed to initialize font:", error);
+				// フォント読み込みに失敗してもアプリは動作させる
+				setFontLoaded(true);
+			}
+		};
+
+		initializeFont();
 	}, []);
 
 	return (

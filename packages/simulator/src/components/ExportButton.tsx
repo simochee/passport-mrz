@@ -8,10 +8,10 @@ type Props = {
 };
 
 export const ExportButton: React.FC<Props> = ({ input }) => {
-	const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+	const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
 		e.preventDefault();
 
-		const canvas = renderMRZToCanvas({
+		const canvas = await renderMRZToCanvas({
 			documentType: input.type,
 			issuingState: input.countryCode,
 			documentNumber: input.passportNo,
