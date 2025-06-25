@@ -13,6 +13,7 @@ export interface RenderConfig {
 	lineHeight: number;
 	padding: number;
 	fontFamily: string;
+	letterSpacing: number; // 文字間隔（px）
 }
 
 /**
@@ -25,6 +26,7 @@ export const DEFAULT_RENDER_CONFIG: RenderConfig = {
 	lineHeight: 1,
 	padding: 0, // 動的に計算されるため初期値は0
 	fontFamily: "OCRB, monospace",
+	letterSpacing: -0.324, // -1.8% of 18px font size
 };
 
 /**
@@ -54,17 +56,31 @@ export function calculateCanvasSize(
 
 	mrzLines.slice(0, 2).forEach((line) => {
 		try {
-			const metrics = tempCtx.measureText(line);
-			lineMetrics.push(metrics);
-			maxWidth = Math.max(maxWidth, metrics.width);
+			// 文字間隔を考慮した幅を計算
+			let lineWidth = 0;
+			for (let i = 0; i < line.length; i++) {
+				const char = line[i];
+				const charMetrics = tempCtx.measureText(char);
+				lineWidth += charMetrics.width;
+				if (i < line.length - 1) {
+					lineWidth += config.letterSpacing;
+				}
+			}
+
+			// 高さ計算用に最初の文字のメトリクスを保存
+			const firstCharMetrics = tempCtx.measureText(line[0] || "M");
+			lineMetrics.push(firstCharMetrics);
+			maxWidth = Math.max(maxWidth, lineWidth);
 		} catch (error) {
 			console.warn("measureTextでエラーが発生しました:", error);
 			// フォールバック: 理論値を使用
 			const charWidth = config.fontSize * 0.7;
-			maxWidth = Math.max(maxWidth, line.length * charWidth);
+			const lineWidth =
+				line.length * charWidth + (line.length - 1) * config.letterSpacing;
+			maxWidth = Math.max(maxWidth, lineWidth);
 			// 空のメトリクスを追加（フォールバック用）
 			lineMetrics.push({
-				width: line.length * charWidth,
+				width: charWidth,
 				actualBoundingBoxAscent: config.fontSize * 0.8,
 				actualBoundingBoxDescent: config.fontSize * 0.2,
 				fontBoundingBoxAscent: config.fontSize * 0.8,
@@ -131,6 +147,36 @@ export function registerMRZFont(): void {
 			// フォントが読み込めない場合でもエラーで停止させない
 		}
 	}
+}
+
+/**
+ * 文字間隔を考慮してテキストを描画する関数
+ * @param ctx キャンバスコンテキスト
+ * @param text 描画するテキスト
+ * @param x 開始X座標
+ * @param y Y座標
+ * @param letterSpacing 文字間隔（px）
+ * @returns 描画後の次のX座標
+ */
+export function drawTextWithLetterSpacing(
+	ctx: CanvasRenderingContext2D,
+	text: string,
+	x: number,
+	y: number,
+	letterSpacing: number,
+): number {
+	let currentX = x;
+
+	for (let i = 0; i < text.length; i++) {
+		const char = text[i];
+		ctx.fillText(char, currentX, y);
+
+		// 文字幅を測定して次の位置を計算
+		const charMetrics = ctx.measureText(char);
+		currentX += charMetrics.width + letterSpacing;
+	}
+
+	return currentX;
 }
 
 /**
@@ -204,13 +250,19 @@ export function drawMRZText(
 
 	mrzLines.slice(0, 2).forEach((line, index) => {
 		if (index === 0) {
-			// 1行目: ベースライン位置に配置
-			ctx.fillText(line, startX, baselineY);
+			// 1行目: ベースライン位置に配置（文字間隔付き）
+			drawTextWithLetterSpacing(
+				ctx,
+				line,
+				startX,
+				baselineY,
+				config.letterSpacing,
+			);
 		} else {
 			// 2行目: 1行目のベースライン + 1行目の下端 + 行間18px + 2行目の上端
 			let secondLineAscent = config.fontSize * 0.8;
 			try {
-				const secondLineMetrics = ctx.measureText(line);
+				const secondLineMetrics = ctx.measureText(line[0] || "M");
 				secondLineAscent = Math.max(
 					secondLineMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
 					secondLineMetrics.fontBoundingBoxAscent || config.fontSize * 0.8,
@@ -222,7 +274,8 @@ export function drawMRZText(
 			const firstLineDescent =
 				firstLineMetrics.actualBoundingBoxDescent || config.fontSize * 0.2;
 			const y = baselineY + firstLineDescent + 18 + secondLineAscent;
-			ctx.fillText(line, startX, y);
+			// 2行目も文字間隔付きで描画
+			drawTextWithLetterSpacing(ctx, line, startX, y, config.letterSpacing);
 		}
 	});
 }

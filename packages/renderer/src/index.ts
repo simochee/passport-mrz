@@ -31,6 +31,7 @@ export {
 	calculateCanvasSize,
 	drawBackground,
 	drawMRZText,
+	type drawTextWithLetterSpacing,
 	registerMRZFont,
 	DEFAULT_RENDER_CONFIG,
 	type RenderConfig,
