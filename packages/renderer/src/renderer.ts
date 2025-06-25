@@ -1,3 +1,5 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { buildMrzLines, type Input } from "@simochee/passport-mrz-builder";
 import { type Canvas, createCanvas, registerFont } from "canvas";
 
@@ -17,7 +19,7 @@ export interface RenderConfig {
  * デフォルトのレンダリング設定
  */
 export const DEFAULT_RENDER_CONFIG: RenderConfig = {
-	fontSize: 60,
+	fontSize: 18,
 	backgroundColor: "#ffffff",
 	textColor: "#000000",
 	lineHeight: 1,
@@ -26,25 +28,88 @@ export const DEFAULT_RENDER_CONFIG: RenderConfig = {
 };
 
 /**
- * キャンバスサイズを計算する関数
+ * キャンバスサイズを計算する関数（measureTextを使用した実測値ベース）
  * @param mrzLines MRZ行の配列
  * @param config レンダリング設定
  * @returns 計算されたキャンバスサイズ
  */
 export function calculateCanvasSize(
-	_mrzLines: string[],
+	mrzLines: string[],
 	config: RenderConfig,
 ): { width: number; height: number } {
-	// OCR-Bフォントの文字幅は約0.7倍
-	const charWidth = config.fontSize * 0.7;
-	const textWidth = 44 * charWidth; // MRZは44文字固定
-	const textHeight = config.fontSize * config.lineHeight * 2; // 2行固定
+	// フォントを登録
+	registerMRZFont();
 
-	// 余白なしのキャンバスサイズ
-	const width = Math.ceil(textWidth + config.padding * 2);
-	const height = Math.ceil(textHeight + config.padding * 2);
+	// 一時的なキャンバスを作成してテキストサイズを測定
+	const tempCanvas = createCanvas(1, 1);
+	const tempCtx = tempCanvas.getContext("2d");
 
-	return { width, height };
+	// フォント設定（描画時と同じ設定）
+	tempCtx.font = `${config.fontSize}px ${config.fontFamily}`;
+	// tempCtx.letterSpacing = "-1.8%"; // Node.js canvasでは未サポート
+
+	// 各行のテキストサイズを測定して最大幅を取得
+	let maxWidth = 0;
+	const lineMetrics: TextMetrics[] = [];
+
+	mrzLines.slice(0, 2).forEach((line) => {
+		try {
+			const metrics = tempCtx.measureText(line);
+			lineMetrics.push(metrics);
+			maxWidth = Math.max(maxWidth, metrics.width);
+		} catch (error) {
+			console.warn("measureTextでエラーが発生しました:", error);
+			// フォールバック: 理論値を使用
+			const charWidth = config.fontSize * 0.7;
+			maxWidth = Math.max(maxWidth, line.length * charWidth);
+			// 空のメトリクスを追加（フォールバック用）
+			lineMetrics.push({
+				width: line.length * charWidth,
+				actualBoundingBoxAscent: config.fontSize * 0.8,
+				actualBoundingBoxDescent: config.fontSize * 0.2,
+				fontBoundingBoxAscent: config.fontSize * 0.8,
+				fontBoundingBoxDescent: config.fontSize * 0.2,
+			} as TextMetrics);
+		}
+	});
+
+	// 実際のテキスト高さを計算（描画ロジックと一致させる）
+	let totalHeight = 0;
+	if (lineMetrics.length > 0) {
+		const firstMetrics = lineMetrics[0];
+		// 1行目の上端から下端まで
+		const firstLineAscent = Math.max(
+			firstMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
+			firstMetrics.fontBoundingBoxAscent || config.fontSize * 0.8,
+		);
+		const firstLineDescent =
+			firstMetrics.actualBoundingBoxDescent || config.fontSize * 0.2;
+
+		totalHeight = firstLineAscent + firstLineDescent;
+
+		if (lineMetrics.length > 1) {
+			// 2行目がある場合：行間18px + 2行目の高さを追加
+			const secondMetrics = lineMetrics[1];
+			const secondLineAscent = Math.max(
+				secondMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
+				secondMetrics.fontBoundingBoxAscent || config.fontSize * 0.8,
+			);
+			const secondLineDescent =
+				secondMetrics.actualBoundingBoxDescent || config.fontSize * 0.2;
+
+			totalHeight += 18 + secondLineAscent + secondLineDescent;
+		}
+	}
+
+	// 余白を含めたキャンバスサイズ
+	const width = Math.ceil(maxWidth + config.padding * 2);
+	const height = Math.ceil(totalHeight + config.padding * 2);
+
+	// サイズが0以下の場合はエラーを防ぐため最小サイズを設定
+	const safeWidth = Math.max(width, 1);
+	const safeHeight = Math.max(height, 1);
+
+	return { width: safeWidth, height: safeHeight };
 }
 
 /**
@@ -52,7 +117,16 @@ export function calculateCanvasSize(
  */
 export function registerMRZFont(): void {
 	if (typeof registerFont === "function") {
-		registerFont("./assets/OCRB.ttf", { family: "OCRB" });
+		// より確実なパスでフォントを登録
+		const __filename = fileURLToPath(import.meta.url);
+		const __dirname = dirname(__filename);
+		const fontPath = join(__dirname, "../assets/OCRB.ttf");
+		try {
+			registerFont(fontPath, { family: "OCRB" });
+		} catch (error) {
+			console.warn("フォントの読み込みに失敗しました:", error);
+			// フォントが読み込めない場合でもエラーで停止させない
+		}
 	}
 }
 
@@ -90,19 +164,58 @@ export function drawMRZText(
 	ctx.fillStyle = config.textColor;
 	ctx.font = `${config.fontSize}px ${config.fontFamily}`;
 	ctx.textAlign = "left";
-	ctx.textBaseline = "top";
+	ctx.textBaseline = "alphabetic"; // alphabeticベースラインを使用
 
-	// 文字間隔を-1.8%に設定
-	ctx.letterSpacing = "-1.8%";
+	// 文字間隔を-1.8%に設定 (Node.js canvasでは未サポートのためコメントアウト)
+	// ctx.letterSpacing = "-1.8%";
 
 	// MRZテキストを描画（2行のみ）
-	const startY = 0;
 	const startX = 0;
-	mrzLines.slice(0, 2).forEach((line, index) => {
-		const y = startY + config.fontSize * config.lineHeight * index;
 
-		// テキストを描画
-		ctx.fillText(line, startX, y);
+	// 最初の行のメトリクスを取得してベースライン位置を決定
+	let firstLineMetrics: TextMetrics;
+	let baselineY: number;
+
+	try {
+		firstLineMetrics = ctx.measureText(mrzLines[0]);
+		baselineY = Math.max(
+			firstLineMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
+			firstLineMetrics.fontBoundingBoxAscent || config.fontSize * 0.8,
+		);
+	} catch (error) {
+		console.warn("描画時のmeasureTextでエラーが発生しました:", error);
+		// フォールバック: フォントサイズベースの値を使用
+		baselineY = config.fontSize * 0.8;
+		firstLineMetrics = {
+			actualBoundingBoxAscent: config.fontSize * 0.8,
+			actualBoundingBoxDescent: config.fontSize * 0.2,
+			fontBoundingBoxAscent: config.fontSize * 0.8,
+			fontBoundingBoxDescent: config.fontSize * 0.2,
+		} as TextMetrics;
+	}
+
+	mrzLines.slice(0, 2).forEach((line, index) => {
+		if (index === 0) {
+			// 1行目: ベースライン位置に配置
+			ctx.fillText(line, startX, baselineY);
+		} else {
+			// 2行目: 1行目のベースライン + 1行目の下端 + 行間18px + 2行目の上端
+			let secondLineAscent = config.fontSize * 0.8;
+			try {
+				const secondLineMetrics = ctx.measureText(line);
+				secondLineAscent = Math.max(
+					secondLineMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
+					secondLineMetrics.fontBoundingBoxAscent || config.fontSize * 0.8,
+				);
+			} catch (error) {
+				console.warn("2行目のmeasureTextでエラーが発生しました:", error);
+			}
+
+			const firstLineDescent =
+				firstLineMetrics.actualBoundingBoxDescent || config.fontSize * 0.2;
+			const y = baselineY + firstLineDescent + 18 + secondLineAscent;
+			ctx.fillText(line, startX, y);
+		}
 	});
 }
 
