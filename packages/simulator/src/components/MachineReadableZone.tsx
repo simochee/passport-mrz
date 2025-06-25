@@ -58,7 +58,7 @@ export const MachineReadableZone: React.FC<Props> = ({ values }) => {
 	}, []);
 
 	return (
-		<div className="h-32 place-items-center">
+		<div className="place-items-center">
 			{dataUrl ? (
 				<img className="object-center" src={dataUrl} alt={mrzString} />
 			) : (
