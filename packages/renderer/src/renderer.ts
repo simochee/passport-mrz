@@ -20,13 +20,13 @@ export interface RenderConfig {
  * デフォルトのレンダリング設定
  */
 export const DEFAULT_RENDER_CONFIG: RenderConfig = {
-	fontSize: 18,
+	fontSize: 64,
 	backgroundColor: "#ffffff",
 	textColor: "#000000",
 	lineHeight: 1,
 	padding: 0, // 動的に計算されるため初期値は0
 	fontFamily: "OCRB, monospace",
-	letterSpacing: -0.324, // -1.8% of 18px font size
+	letterSpacing: 0, // 動的に計算されるため初期値は0（実際は fontSize * -0.018）
 };
 
 /**
@@ -46,6 +46,9 @@ export function calculateCanvasSize(
 	const tempCanvas = createCanvas(1, 1);
 	const tempCtx = tempCanvas.getContext("2d");
 
+	// 動的letterSpacing計算：フォントサイズの-1.8%
+	const dynamicLetterSpacing = config.letterSpacing || config.fontSize * -0.018;
+
 	// フォント設定（描画時と同じ設定）
 	tempCtx.font = `${config.fontSize}px ${config.fontFamily}`;
 	// tempCtx.letterSpacing = "-1.8%"; // Node.js canvasでは未サポート
@@ -63,7 +66,7 @@ export function calculateCanvasSize(
 				const charMetrics = tempCtx.measureText(char);
 				lineWidth += charMetrics.width;
 				if (i < line.length - 1) {
-					lineWidth += config.letterSpacing;
+					lineWidth += dynamicLetterSpacing;
 				}
 			}
 
@@ -76,7 +79,7 @@ export function calculateCanvasSize(
 			// フォールバック: 理論値を使用
 			const charWidth = config.fontSize * 0.7;
 			const lineWidth =
-				line.length * charWidth + (line.length - 1) * config.letterSpacing;
+				line.length * charWidth + (line.length - 1) * dynamicLetterSpacing;
 			maxWidth = Math.max(maxWidth, lineWidth);
 			// 空のメトリクスを追加（フォールバック用）
 			lineMetrics.push({
@@ -104,7 +107,7 @@ export function calculateCanvasSize(
 		totalHeight = firstLineAscent + firstLineDescent;
 
 		if (lineMetrics.length > 1) {
-			// 2行目がある場合：行間18px + 2行目の高さを追加
+			// 2行目がある場合：行間（フォントサイズと同じ）+ 2行目の高さを追加
 			const secondMetrics = lineMetrics[1];
 			const secondLineAscent = Math.max(
 				secondMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
@@ -113,7 +116,7 @@ export function calculateCanvasSize(
 			const secondLineDescent =
 				secondMetrics.actualBoundingBoxDescent || config.fontSize * 0.2;
 
-			totalHeight += 18 + secondLineAscent + secondLineDescent;
+			totalHeight += config.fontSize + secondLineAscent + secondLineDescent;
 		}
 	}
 
@@ -221,6 +224,9 @@ export function drawMRZText(
 	// 動的padding計算：フォントサイズの半分
 	const dynamicPadding = config.fontSize / 2;
 
+	// 動的letterSpacing計算：フォントサイズの-1.8%
+	const dynamicLetterSpacing = config.letterSpacing || config.fontSize * -0.018;
+
 	// MRZテキストを描画（2行のみ）
 	const startX = dynamicPadding; // 左余白を追加
 
@@ -256,10 +262,10 @@ export function drawMRZText(
 				line,
 				startX,
 				baselineY,
-				config.letterSpacing,
+				dynamicLetterSpacing,
 			);
 		} else {
-			// 2行目: 1行目のベースライン + 1行目の下端 + 行間18px + 2行目の上端
+			// 2行目: 1行目のベースライン + 1行目の下端 + 行間（フォントサイズと同じ）+ 2行目の上端
 			let secondLineAscent = config.fontSize * 0.8;
 			try {
 				const secondLineMetrics = ctx.measureText(line[0] || "M");
@@ -273,9 +279,10 @@ export function drawMRZText(
 
 			const firstLineDescent =
 				firstLineMetrics.actualBoundingBoxDescent || config.fontSize * 0.2;
-			const y = baselineY + firstLineDescent + 18 + secondLineAscent;
+			const y =
+				baselineY + firstLineDescent + config.fontSize + secondLineAscent;
 			// 2行目も文字間隔付きで描画
-			drawTextWithLetterSpacing(ctx, line, startX, y, config.letterSpacing);
+			drawTextWithLetterSpacing(ctx, line, startX, y, dynamicLetterSpacing);
 		}
 	});
 }
