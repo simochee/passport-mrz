@@ -12,12 +12,12 @@ const main = defineCommand({
 		description: pkg.description,
 	},
 	args: {
-		outputDir: {
+		outdir: {
 			type: "string",
 			description: "Output directory",
 			default: ".",
 		},
-		outputName: {
+		filename: {
 			type: "string",
 			description:
 				"Output file name (supports placeholders like {documentNumber}, {primaryIdentifier}, etc.)",
@@ -130,7 +130,7 @@ const main = defineCommand({
 		const pngBuffer = await renderMRZToPNG(inputData);
 
 		// プレイスホルダーを実際の値で置換（スペースはアンダースコアに変換）
-		let outputName = args.outputName;
+		let outputName = args.filename;
 		outputName = outputName.replace(
 			/\{documentType\}/g,
 			inputData.documentType.replace(/\s/g, "_"),
@@ -172,7 +172,7 @@ const main = defineCommand({
 			inputData.dateOfExpiry.replace(/\s/g, "_"),
 		);
 
-		const outputPath = join(args.outputDir, outputName);
+		const outputPath = join(args.outdir, outputName);
 
 		await writeFile(outputPath, pngBuffer);
 		console.log(`PNG file saved as ${outputPath}`);
