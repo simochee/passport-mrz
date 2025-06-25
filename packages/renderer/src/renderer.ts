@@ -23,7 +23,7 @@ export const DEFAULT_RENDER_CONFIG: RenderConfig = {
 	backgroundColor: "#ffffff",
 	textColor: "#000000",
 	lineHeight: 1,
-	padding: 0,
+	padding: 0, // 動的に計算されるため初期値は0
 	fontFamily: "OCRB, monospace",
 };
 
@@ -101,9 +101,12 @@ export function calculateCanvasSize(
 		}
 	}
 
+	// 動的padding計算：フォントサイズの半分
+	const dynamicPadding = config.fontSize / 2;
+
 	// 余白を含めたキャンバスサイズ
-	const width = Math.ceil(maxWidth + config.padding * 2);
-	const height = Math.ceil(totalHeight + config.padding * 2);
+	const width = Math.ceil(maxWidth + dynamicPadding * 2);
+	const height = Math.ceil(totalHeight + dynamicPadding * 2);
 
 	// サイズが0以下の場合はエラーを防ぐため最小サイズを設定
 	const safeWidth = Math.max(width, 1);
@@ -169,8 +172,11 @@ export function drawMRZText(
 	// 文字間隔を-1.8%に設定 (Node.js canvasでは未サポートのためコメントアウト)
 	// ctx.letterSpacing = "-1.8%";
 
+	// 動的padding計算：フォントサイズの半分
+	const dynamicPadding = config.fontSize / 2;
+
 	// MRZテキストを描画（2行のみ）
-	const startX = 0;
+	const startX = dynamicPadding; // 左余白を追加
 
 	// 最初の行のメトリクスを取得してベースライン位置を決定
 	let firstLineMetrics: TextMetrics;
@@ -178,14 +184,16 @@ export function drawMRZText(
 
 	try {
 		firstLineMetrics = ctx.measureText(mrzLines[0]);
-		baselineY = Math.max(
-			firstLineMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
-			firstLineMetrics.fontBoundingBoxAscent || config.fontSize * 0.8,
-		);
+		baselineY =
+			dynamicPadding +
+			Math.max(
+				firstLineMetrics.actualBoundingBoxAscent || config.fontSize * 0.8,
+				firstLineMetrics.fontBoundingBoxAscent || config.fontSize * 0.8,
+			);
 	} catch (error) {
 		console.warn("描画時のmeasureTextでエラーが発生しました:", error);
 		// フォールバック: フォントサイズベースの値を使用
-		baselineY = config.fontSize * 0.8;
+		baselineY = dynamicPadding + config.fontSize * 0.8;
 		firstLineMetrics = {
 			actualBoundingBoxAscent: config.fontSize * 0.8,
 			actualBoundingBoxDescent: config.fontSize * 0.2,
