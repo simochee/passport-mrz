@@ -1,0 +1,49 @@
+{
+	"name": "@simochee/passport-mrz-parser",
+	"version": "1.0.0",
+	"description": "A library for parsing passport MRZ (Machine Readable Zone) strings into structured data",
+	"type": "module",
+	"keywords": [
+		"mrz",
+		"passport",
+		"parser"
+	],
+	"author": "simochee",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/simochee/passport-mrz-simulator.git",
+		"directory": "packages/parser"
+	},
+	"bugs": {
+		"url": "https://github.com/simochee/passport-mrz-simulator/issues"
+	},
+	"homepage": "https://github.com/simochee/passport-mrz-simulator#readme",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild",
+		"dev": "unbuild --stub",
+		"test": "vitest run"
+	},
+	"devDependencies": {
+		"tsconfig": "workspace:*",
+		"typescript": "^5.8.3",
+		"unbuild": "^3.5.0",
+		"vitest": "^2.1.8"
+	},
+	"dependencies": {
+		"@simochee/passport-mrz-builder": "workspace:*"
+	}
+}
