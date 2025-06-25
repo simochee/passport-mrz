@@ -1,7 +1,11 @@
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { buildMrzLines, type Input } from "@simochee/passport-mrz-builder";
-import { type Canvas, createCanvas, registerFont } from "canvas";
+import {
+	type Canvas,
+	type CanvasRenderingContext2D,
+	createCanvas,
+	registerFont,
+	type TextMetrics,
+} from "canvas";
 
 /**
  * レンダリング設定の型定義
@@ -35,12 +39,12 @@ export const DEFAULT_RENDER_CONFIG: RenderConfig = {
  * @param config レンダリング設定
  * @returns 計算されたキャンバスサイズ
  */
-export function calculateCanvasSize(
+export async function calculateCanvasSize(
 	mrzLines: string[],
 	config: RenderConfig,
-): { width: number; height: number } {
+): Promise<{ width: number; height: number }> {
 	// フォントを登録
-	registerMRZFont();
+	await registerMRZFont();
 
 	// 一時的なキャンバスを作成してテキストサイズを測定
 	const tempCanvas = createCanvas(1, 1);
@@ -137,12 +141,13 @@ export function calculateCanvasSize(
 /**
  * フォントを登録する関数
  */
-export function registerMRZFont(): void {
+export async function registerMRZFont(): Promise<void> {
 	if (typeof registerFont === "function") {
-		// より確実なパスでフォントを登録
-		const __filename = fileURLToPath(import.meta.url);
-		const __dirname = dirname(__filename);
-		const fontPath = join(__dirname, "../assets/OCRB.ttf");
+		const { fileURLToPath } = await import("node:url");
+
+		const fontPath = fileURLToPath(
+			new URL("../assets/OCRB.ttf", import.meta.url),
+		);
 		try {
 			registerFont(fontPath, { family: "OCRB" });
 		} catch (error) {
@@ -293,18 +298,18 @@ export function drawMRZText(
  * @param config レンダリング設定（オプション）
  * @returns 描画済みのキャンバス
  */
-export function renderMRZToCanvas(
+export async function renderMRZToCanvas(
 	input: Input,
 	config: RenderConfig = DEFAULT_RENDER_CONFIG,
-): Canvas {
+): Promise<Canvas> {
 	// MRZテキストを生成
 	const mrzLines = buildMrzLines(input);
 
 	// キャンバスサイズを計算
-	const { width, height } = calculateCanvasSize(mrzLines, config);
+	const { width, height } = await calculateCanvasSize(mrzLines, config);
 
 	// フォントを登録
-	registerMRZFont();
+	await registerMRZFont();
 
 	// キャンバスを生成
 	const canvas = createCanvas(width, height);

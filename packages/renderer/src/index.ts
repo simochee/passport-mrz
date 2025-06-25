@@ -4,6 +4,7 @@ import {
 	DEFAULT_RENDER_CONFIG,
 	drawBackground,
 	drawMRZText,
+	drawTextWithLetterSpacing,
 	type RenderConfig,
 	registerMRZFont,
 	renderMRZToCanvas,
@@ -19,7 +20,7 @@ const renderMRZToPNG = async (
 	input: Input,
 	config?: RenderConfig,
 ): Promise<Buffer> => {
-	const canvas = renderMRZToCanvas(input, config);
+	const canvas = await renderMRZToCanvas(input, config);
 
 	// PNG Bufferを生成
 	return canvas.toBuffer("image/png");
@@ -31,7 +32,7 @@ export {
 	calculateCanvasSize,
 	drawBackground,
 	drawMRZText,
-	type drawTextWithLetterSpacing,
+	drawTextWithLetterSpacing,
 	registerMRZFont,
 	DEFAULT_RENDER_CONFIG,
 	type RenderConfig,
