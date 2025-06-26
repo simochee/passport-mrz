@@ -24,12 +24,12 @@ export const AppFooter: React.FC = () => {
 		{
 			icon: LogoGithub,
 			text: "ソースコード",
-			href: "https://github.com/simochee/mrz-simulator",
+			href: "https://github.com/simochee/passport-mrz",
 		},
 		{
 			icon: Debug,
 			text: "不具合の報告",
-			href: "https://github.com/simochee/mrz-simulator/issues/new",
+			href: "https://github.com/simochee/passport-mrz/issues/new",
 		},
 		{
 			icon: LogoNpm,

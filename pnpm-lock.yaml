@@ -86,9 +86,6 @@ importers:
       '@faker-js/faker':
         specifier: ^9.8.0
         version: 9.8.0
-      '@fontsource/ibm-plex-sans-jp':
-        specifier: ^5.2.6
-        version: 5.2.6
       '@headlessui/react':
         specifier: ^2.2.4
         version: 2.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -762,9 +759,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@fontsource/ibm-plex-sans-jp@5.2.6':
-    resolution: {integrity: sha512-iFuHd2SA9PZc3QAyvlUXACoo8yg7dw1QMDtYXTDCf1/BgP2xdj2664OB3GYbsqv/opmCguC0olyqhpiRUoOFfQ==}
 
   '@headlessui/react@2.2.4':
     resolution: {integrity: sha512-lz+OGcAH1dK93rgSMzXmm1qKOJkBUqZf1L4M8TWLNplftQD3IkoEDdUFNfAn4ylsN6WOTVtWaLmvmaHOUk1dTA==}
@@ -3301,8 +3295,6 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@fontsource/ibm-plex-sans-jp@5.2.6': {}
 
   '@headlessui/react@2.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
