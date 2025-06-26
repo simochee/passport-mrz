@@ -43,7 +43,7 @@ export const ExportButton: React.FC<Props> = ({ input }) => {
 	};
 
 	return (
-		<BaseButton icon={Download} onClick={handleClick}>
+		<BaseButton icon={Download} style="fill" onClick={handleClick}>
 			PNG をダウンロード
 		</BaseButton>
 	);

@@ -62,17 +62,22 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 	}, [onChange, values]);
 
 	return (
-		<div className="grid gap-6">
-			<div className="flex gap-2 justify-center flex-wrap">
-				<BaseButton icon={Copy} onClick={copy}>
-					MRZをコピー
-				</BaseButton>
-				<ExportButton input={values} />
-				<ShareButton input={values} />
-				<FakerButton onClick={setValues} />
-				<BaseButton icon={Reset} onClick={reset}>
-					リセット
-				</BaseButton>
+		<div className="grid gap-9">
+			<div className="flex gap-8 justify-between pb-4 border-b border-slate-200 items-end">
+				<h2 className="h-8 place-content-center text-slate-800 shrink-0">
+					パスポート情報
+				</h2>
+				<div className="flex flex-wrap gap-3 justify-end">
+					<BaseButton icon={Copy} style="fill" onClick={copy}>
+						MRZをコピー
+					</BaseButton>
+					<ExportButton input={values} />
+					<ShareButton input={values} />
+					<FakerButton onClick={setValues} />
+					<BaseButton icon={Reset} style="outline" onClick={reset}>
+						リセット
+					</BaseButton>
+				</div>
 			</div>
 			<form className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-10">
 				<form.Field name="type">

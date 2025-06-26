@@ -21,7 +21,7 @@ export const ShareButton: React.FC<Props> = ({ input }) => {
 	};
 
 	return (
-		<BaseButton icon={Share} onClick={handleClick}>
+		<BaseButton icon={Share} style="fill" onClick={handleClick}>
 			共有リンクをコピー
 		</BaseButton>
 	);

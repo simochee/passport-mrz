@@ -55,7 +55,7 @@ export const FakerButton: React.FC<Props> = ({ onClick }) => {
 	};
 
 	return (
-		<BaseButton icon={Shuffle} onClick={handleClick}>
+		<BaseButton icon={Shuffle} style="outline" onClick={handleClick}>
 			ランダム
 		</BaseButton>
 	);

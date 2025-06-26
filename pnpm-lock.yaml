@@ -98,12 +98,12 @@ importers:
       '@simochee/passport-mrz-renderer':
         specifier: workspace:*
         version: link:../renderer
-      '@solar-icons/react':
-        specifier: ^1.0.1
-        version: 1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tanstack/react-form':
         specifier: ^1.12.3
         version: 1.12.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       ocrb-webfont:
         specifier: workspace:*
         version: link:../ocrb-webfont
@@ -1103,13 +1103,6 @@ packages:
     resolution: {integrity: sha512-Q2Mgwt+D8hd5FIPUuPDsvPR7Bguza6yTkJxspDGkZj7tBRn2y4KSWYuIXpftFSjBra76TbKerCV7rgFPQrn+wQ==}
     cpu: [x64]
     os: [win32]
-
-  '@solar-icons/react@1.0.1':
-    resolution: {integrity: sha512-qTF1ka2NWTeh5iPvKJVNXHDvqA+2UuixpNjVVMha5LynGFzy5deiNBnjd/TVtgPPvq1zW3/YRG8a6zdZbsZT9Q==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      react: '>= 16.8'
-      react-dom: '>= 16.8'
 
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
@@ -3583,11 +3576,6 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.44.0':
     optional: true
-
-  '@solar-icons/react@1.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
 
   '@swc/helpers@0.5.17':
     dependencies:
