@@ -74,7 +74,7 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					リセット
 				</BaseButton>
 			</div>
-			<form className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-8">
+			<form className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-12 gap-y-10">
 				<form.Field name="type">
 					{(field) => (
 						<TextField
@@ -95,14 +95,30 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				</form.Field>
 				<form.Field name="passportNo">
 					{(field) => (
-						<TextField label="旅券番号 / Passport No." field={field} />
+						<TextField
+							label="旅券番号 / Passport No."
+							note="AA0000000 形式の7桁"
+							field={field}
+						/>
 					)}
 				</form.Field>
 				<form.Field name="surname">
-					{(field) => <TextField label="姓 / Surname" field={field} />}
+					{(field) => (
+						<TextField
+							label="姓 / Surname"
+							note="スペースを含まない"
+							field={field}
+						/>
+					)}
 				</form.Field>
 				<form.Field name="givenNames">
-					{(field) => <TextField label="名 / Given Names" field={field} />}
+					{(field) => (
+						<TextField
+							label="名 / Given Names"
+							note="ミドルネームはスペースで区切る"
+							field={field}
+						/>
+					)}
 				</form.Field>
 				<form.Field name="nationality">
 					{(field) => (
