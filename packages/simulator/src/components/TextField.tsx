@@ -9,7 +9,7 @@ type Props = {
 export const TextField: React.FC<Props> = ({ label, field, note }) => {
 	return (
 		<div className="flex flex-col gap-2">
-			<label htmlFor={field.name} className="text-slate-800 font-bold text-xs">
+			<label htmlFor={field.name} className="text-slate-800 text-xs">
 				{label}
 			</label>
 			<input
