@@ -11,13 +11,13 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/simochee/passport-mrz-simulator.git",
+		"url": "https://github.com/simochee/passport-mrz.git",
 		"directory": "packages/renderer"
 	},
 	"bugs": {
-		"url": "https://github.com/simochee/passport-mrz-simulator/issues"
+		"url": "https://github.com/simochee/passport-mrz/issues"
 	},
-	"homepage": "https://github.com/simochee/passport-mrz-simulator#readme",
+	"homepage": "https://github.com/simochee/passport-mrz#readme",
 	"engines": {
 		"node": ">=16.0.0"
 	},
