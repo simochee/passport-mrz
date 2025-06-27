@@ -38,6 +38,9 @@
 		"dist",
 		"assets"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"build": "unbuild",
 		"dev": "unbuild --stub",
