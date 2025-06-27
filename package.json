@@ -5,7 +5,29 @@
 		"@commitlint/cli": "^19.8.1",
 		"@commitlint/config-conventional": "^19.8.1",
 		"lefthook": "^1.11.14",
+		"semantic-release": "^24.2.5",
+		"semantic-release-monorepo": "^8.0.2",
 		"typescript": "^5.8.3",
 		"unbuild": "^3.5.0"
+	},
+	"release": {
+		"branches": [
+			"main"
+		],
+		"extends": [
+			"semantic-release-monorepo"
+		],
+		"plugins": [
+			"@semantic-release/commit-analyzer",
+			"@semantic-release/release-notes-generator",
+			"@semantic-release/npm",
+			[
+				"@semantic-release/git",
+				{
+					"message": "chore(release): ${nextRelease.gitTag} [skip ci]\n\n${nextRelease.notes}"
+				}
+			],
+			"@semantic-release/github"
+		]
 	}
 }
