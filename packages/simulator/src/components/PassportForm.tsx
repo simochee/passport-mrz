@@ -18,7 +18,7 @@ type Props = {
 };
 
 export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 	const form = useForm({
 		defaultValues,
 	});
@@ -58,6 +58,11 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 		);
 	};
 
+	const toggleLanguage = () => {
+		const newLang = i18n.language === "ja" ? "en" : "ja";
+		i18n.changeLanguage(newLang);
+	};
+
 	useEffect(() => {
 		persist(values);
 		onChange(values);
@@ -70,6 +75,13 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 					{t("passportInfo")}
 				</h2>
 				<div className="flex flex-wrap gap-3 justify-end">
+					<button
+						type="button"
+						onClick={toggleLanguage}
+						className="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-300 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+					>
+						{i18n.language === "ja" ? "English" : "日本語"}
+					</button>
 					<BaseButton icon={Copy} style="fill" onClick={copy}>
 						{t("copyMRZ")}
 					</BaseButton>
