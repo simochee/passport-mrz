@@ -1,5 +1,5 @@
 {
-	"name": "@simochee/passport-mrz-renderer",
+	"name": "passport-mrz-renderer",
 	"version": "0.0.0-development",
 	"description": "A passport MRZ string rendering library that supports both browser and Node.js environments",
 	"type": "module",
@@ -11,7 +11,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/simochee/passport-mrz.git",
+		"url": "git+https://github.com/simochee/passport-mrz.git",
 		"directory": "packages/renderer"
 	},
 	"bugs": {
@@ -59,7 +59,7 @@
 		"vitest": "^3.2.4"
 	},
 	"dependencies": {
-		"@simochee/passport-mrz-builder": "workspace:*",
+		"passport-mrz-builder": "workspace:*",
 		"canvas": "^3.1.1",
 		"citty": "^0.1.6"
 	}

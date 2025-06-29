@@ -1,5 +1,5 @@
 {
-	"name": "@simochee/passport-mrz-builder",
+	"name": "passport-mrz-builder",
 	"version": "0.0.0-development",
 	"description": "A library for generating passport MRZ (Machine Readable Zone) strings",
 	"type": "module",
@@ -11,7 +11,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/simochee/passport-mrz.git",
+		"url": "git+https://github.com/simochee/passport-mrz.git",
 		"directory": "packages/builder"
 	},
 	"bugs": {

@@ -37,7 +37,7 @@ jobs:
         run: pnpm run -r build
 
       - name: release
-        run: pnpm -r --filter "@simochee/*" exec semantic-release
+        run: pnpm -r exec semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
