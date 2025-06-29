@@ -1,5 +1,6 @@
 import { Shuffle } from "@carbon/icons-react";
 import { faker } from "@faker-js/faker/locale/en";
+import { useTranslation } from "react-i18next";
 import type { PassportInput } from "../types/passport";
 import { BaseButton } from "./BaseButton";
 
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export const FakerButton: React.FC<Props> = ({ onClick }) => {
+	const { t } = useTranslation();
 	const stringifyDate = (input: Date): string => {
 		const year = input.getFullYear();
 		const month = input.getMonth() + 1;
@@ -56,7 +58,7 @@ export const FakerButton: React.FC<Props> = ({ onClick }) => {
 
 	return (
 		<BaseButton icon={Shuffle} style="outline" onClick={handleClick}>
-			ランダム
+			{t("random")}
 		</BaseButton>
 	);
 };

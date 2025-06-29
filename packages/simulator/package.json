@@ -29,9 +29,12 @@
 		"@passport-mrz/renderer": "workspace:*",
 		"@tanstack/react-form": "^1.12.3",
 		"clsx": "^2.1.1",
+		"i18next": "^25.2.1",
+		"i18next-browser-languagedetector": "^8.1.0",
 		"ocrb-webfont": "workspace:*",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
+		"react-i18next": "^15.5.3",
 		"valibot": "^1.1.0",
 		"webfontloader": "^1.6.28"
 	}
