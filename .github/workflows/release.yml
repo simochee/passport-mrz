@@ -40,7 +40,7 @@ jobs:
           version: pnpm exec changeset version
           publish: pnpm exec changeset publish
           title: "chore: Update version for release"
-          commit: "chore: update version for release"
+          commit: "chore(changesets): update version for release"
           createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
