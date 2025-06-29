@@ -1,6 +1,6 @@
 {
 	"name": "@passport-mrz/renderer",
-	"version": "0.0.0-development",
+	"version": "1.0.0",
 	"description": "A passport MRZ string rendering library that supports both browser and Node.js environments",
 	"type": "module",
 	"keywords": [
