@@ -38,7 +38,7 @@ jobs:
         uses: changesets/action@v1
         with:
           version: pnpm exec changeset version
-          publish: pnpm exec changeset publish
+          publish: pnpm exec changeset publish --provenance
           title: "chore: Update version for release"
           commit: "chore(changesets): update version for release"
           createGithubReleases: true
