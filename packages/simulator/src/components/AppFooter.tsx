@@ -9,14 +9,17 @@ import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.svg";
 
 export const AppFooter: React.FC = () => {
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const toggleLanguage = () => {
+		const newLang = i18n.language === "ja" ? "en" : "ja";
+		i18n.changeLanguage(newLang);
+	};
+
 	const navItems = [
 		{
 			icon: Language,
-			text: t("footer.nav.english"),
-			onClick(e: React.MouseEvent<HTMLButtonElement>) {
-				e.preventDefault();
-			},
+			text: t("footer.nav.language"),
+			onClick: toggleLanguage,
 		},
 		{
 			icon: LogoX,

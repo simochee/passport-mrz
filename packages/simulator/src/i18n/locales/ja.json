@@ -50,7 +50,7 @@
 	"footer": {
 		"privacyNotice": "パスポート情報は個人情報です。入力内容の取り扱いにはご注意ください。",
 		"nav": {
-			"english": "English",
+			"language": "English",
 			"sourceCode": "ソースコード",
 			"reportIssue": "不具合の報告"
 		}

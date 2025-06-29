@@ -50,7 +50,7 @@
 	"footer": {
 		"privacyNotice": "Passport information is personal data. Please handle your input carefully.",
 		"nav": {
-			"english": "English",
+			"language": "日本語",
 			"sourceCode": "Source Code",
 			"reportIssue": "Report Issue"
 		}
