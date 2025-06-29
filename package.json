@@ -9,26 +9,5 @@
 		"semantic-release-monorepo": "^8.0.2",
 		"typescript": "^5.8.3",
 		"unbuild": "^3.5.0"
-	},
-	"release": {
-		"branches": [
-			"main"
-		],
-		"tagFormat": "${name}@${version}",
-		"extends": [
-			"semantic-release-monorepo"
-		],
-		"plugins": [
-			"@semantic-release/commit-analyzer",
-			"@semantic-release/release-notes-generator",
-			"@semantic-release/npm",
-			[
-				"@semantic-release/git",
-				{
-					"message": "chore(release): ${nextRelease.gitTag} [skip ci]\n\n${nextRelease.notes}"
-				}
-			],
-			"@semantic-release/github"
-		]
 	}
 }

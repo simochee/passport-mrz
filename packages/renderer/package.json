@@ -49,9 +49,6 @@
 		"test": "vitest",
 		"test:run": "vitest run"
 	},
-	"release": {
-		"extends": "../../.releaserc.js"
-	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "^19.8.1",
 		"@types/node": "^24.0.4",

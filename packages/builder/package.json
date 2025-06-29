@@ -39,9 +39,6 @@
 		"dev": "unbuild --stub",
 		"test": "vitest run"
 	},
-	"release": {
-		"extends": "../../.releaserc.js"
-	},
 	"devDependencies": {
 		"tsconfig": "workspace:*",
 		"typescript": "^5.8.3",

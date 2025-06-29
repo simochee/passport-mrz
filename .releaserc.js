@@ -3,9 +3,7 @@
  */
 export default {
 	branches: ["main"],
-	// biome-ignore  lint: suspicious/noTemplateCurlyInString
-	tagFormat: "${name}@${version}",
-	extends: ["semantic-release-monorepo"],
+	extends: "semantic-release-monorepo",
 	plugins: [
 		"@semantic-release/commit-analyzer",
 		"@semantic-release/release-notes-generator",
@@ -20,4 +18,5 @@ export default {
 		],
 		"@semantic-release/github",
 	],
+	preset: "angular",
 };
