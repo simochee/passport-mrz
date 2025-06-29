@@ -1,5 +1,5 @@
+import type { Input } from "@passport-mrz/builder";
 import { createCanvas } from "canvas";
-import type { Input } from "passport-mrz-builder";
 import { describe, expect, it } from "vitest";
 import {
 	calculateCanvasSize,

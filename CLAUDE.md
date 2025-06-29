@@ -42,8 +42,8 @@
 - Vite: ビルドツール
 
 ### NPMモジュール
-- passport-mrz-builder: MRZ生成ライブラリ（tsupでビルド）
-- passport-mrz-renderer: 画像生成ライブラリ（tsupでビルド）
+- @passport-mrz/builder: MRZ生成ライブラリ（tsupでビルド）
+- @passport-mrz/renderer: 画像生成ライブラリ（tsupでビルド）
   - ブラウザとNode.js両対応
   - PNGで生成
   - 生成時の幅をパラメータで指定可能

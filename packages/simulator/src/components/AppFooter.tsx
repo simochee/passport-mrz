@@ -33,13 +33,13 @@ export const AppFooter: React.FC = () => {
 		},
 		{
 			icon: LogoNpm,
-			text: "passport-mrz-builder",
-			href: "https://www.npmjs.com/package/passport-mrz-renderer",
+			text: "@passport-mrz/builder",
+			href: "https://www.npmjs.com/package/@passport-mrz/builder",
 		},
 		{
 			icon: LogoNpm,
-			text: "passport-mrz-renderer",
-			href: "https://www.npmjs.com/package/passport-mrz-renderer",
+			text: "@passport-mrz/renderer",
+			href: "https://www.npmjs.com/package/@passport-mrz/renderer",
 		},
 	];
 

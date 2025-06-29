@@ -1,6 +1,6 @@
 import { Copy, Reset } from "@carbon/icons-react";
+import { buildMrzLines } from "@passport-mrz/builder";
 import { useForm, useStore } from "@tanstack/react-form";
-import { buildMrzLines } from "passport-mrz-builder";
 import { useEffect } from "react";
 import { DEFAULT_VALUES } from "../hooks/useInitialValues";
 import type { PassportInput } from "../types/passport";

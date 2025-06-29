@@ -1,6 +1,6 @@
 ---
-"passport-mrz-builder": major
-"passport-mrz-renderer": major
+"@passport-mrz/builder": major
+"@passport-mrz/renderer": major
 ---
 
 # Initial Release
@@ -9,13 +9,13 @@ Initial release of the Passport MRZ Simulator packages.
 
 ## Key Features
 
-### passport-mrz-builder
+### @passport-mrz/builder
 - ICAO 9303 TD3 standard compliant passport MRZ generation
 - Comprehensive field validation
 - Name truncation functionality (ICAO compliant)
 - CLI tool with JSON input support
 
-### passport-mrz-renderer  
+### @passport-mrz/renderer  
 - PNG format MRZ image generation
 - Browser and Node.js compatibility
 - OCR-B font integration

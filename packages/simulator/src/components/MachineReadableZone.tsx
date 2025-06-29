@@ -1,6 +1,6 @@
 import ocrbcss from "ocrb-webfont?url";
-import { buildMrzLines } from "passport-mrz-builder";
-import { renderMRZToCanvas } from "passport-mrz-renderer";
+import { buildMrzLines } from "@passport-mrz/builder";
+import { renderMRZToCanvas } from "@passport-mrz/renderer";
 import { useEffect, useMemo, useState } from "react";
 import WebFont from "webfontloader";
 import type { PassportInput } from "../types/passport";

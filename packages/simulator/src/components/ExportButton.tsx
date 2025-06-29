@@ -1,5 +1,5 @@
 import { Download } from "@carbon/icons-react";
-import { renderMRZToCanvas } from "passport-mrz-renderer";
+import { renderMRZToCanvas } from "@passport-mrz/renderer";
 import type { PassportInput } from "../types/passport";
 import { BaseButton } from "./BaseButton";
 

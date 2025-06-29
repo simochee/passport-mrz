@@ -1,3 +1,4 @@
+import { buildMrzLines, type Input } from "@passport-mrz/builder";
 import {
 	type Canvas,
 	type CanvasRenderingContext2D,
@@ -5,7 +6,6 @@ import {
 	registerFont,
 	type TextMetrics,
 } from "canvas";
-import { buildMrzLines, type Input } from "passport-mrz-builder";
 
 /**
  * レンダリング設定の型定義

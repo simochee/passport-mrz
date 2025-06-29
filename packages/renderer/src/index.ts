@@ -1,4 +1,4 @@
-import type { Input } from "passport-mrz-builder";
+import type { Input } from "@passport-mrz/builder";
 import {
 	calculateCanvasSize,
 	DEFAULT_RENDER_CONFIG,

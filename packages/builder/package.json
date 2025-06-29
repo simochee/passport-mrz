@@ -1,5 +1,5 @@
 {
-	"name": "passport-mrz-builder",
+	"name": "@passport-mrz/builder",
 	"version": "0.0.0-development",
 	"description": "A library for generating passport MRZ (Machine Readable Zone) strings",
 	"type": "module",

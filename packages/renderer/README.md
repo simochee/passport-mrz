@@ -1,10 +1,10 @@
-# passport-mrz-renderer
+# @passport-mrz/renderer
 
-<!-- automd:badges color="red" github="simochee/passport-mrz" license name="passport-mrz-renderer" bundlephobia -->
+<!-- automd:badges color="red" github="simochee/passport-mrz" license name="@passport-mrz/renderer" bundlephobia -->
 
-[![npm version](https://img.shields.io/npm/v/passport-mrz-renderer?color=red)](https://npmjs.com/package/passport-mrz-renderer)
-[![npm downloads](https://img.shields.io/npm/dm/passport-mrz-renderer?color=red)](https://npm.chart.dev/passport-mrz-renderer)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/passport-mrz-renderer?color=red)](https://bundlephobia.com/package/passport-mrz-renderer)
+[![npm version](https://img.shields.io/npm/v/@passport-mrz/renderer?color=red)](https://npmjs.com/package/@passport-mrz/renderer)
+[![npm downloads](https://img.shields.io/npm/dm/@passport-mrz/renderer?color=red)](https://npm.chart.dev/@passport-mrz/renderer)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@passport-mrz/renderer?color=red)](https://bundlephobia.com/package/@passport-mrz/renderer)
 [![license](https://img.shields.io/github/license/simochee/passport-mrz?color=red)](https://github.com/simochee/passport-mrz/blob/main/LICENSE)
 
 <!-- /automd -->
@@ -13,26 +13,26 @@ Renders passport MRZ (Machine Readable Zone) strings as images using the OCR-B f
 
 ## Installation
 
-<!-- automd:pm-install name="passport-mrz-renderer" -->
+<!-- automd:pm-install name="@passport-mrz/renderer" -->
 
 ```sh
 # ✨ Auto-detect
-npx nypm install passport-mrz-renderer
+npx nypm install @passport-mrz/renderer
 
 # npm
-npm install passport-mrz-renderer
+npm install @passport-mrz/renderer
 
 # yarn
-yarn add passport-mrz-renderer
+yarn add @passport-mrz/renderer
 
 # pnpm
-pnpm install passport-mrz-renderer
+pnpm install @passport-mrz/renderer
 
 # bun
-bun install passport-mrz-renderer
+bun install @passport-mrz/renderer
 
 # deno
-deno install passport-mrz-renderer
+deno install @passport-mrz/renderer
 ```
 
 <!-- /automd -->
@@ -42,8 +42,8 @@ deno install passport-mrz-renderer
 ### Programmatic API
 
 ```ts
-import type { Input } from 'passport-mrz-builder'
-import { renderMRZToPNG } from 'passport-mrz-renderer'
+import type { Input } from '@passport-mrz/builder'
+import { renderMRZToPNG } from '@passport-mrz/renderer'
 
 const input: Input = {
   documentType: 'PP',
@@ -72,7 +72,7 @@ The above image shows the rendered output for the input data in [`examples/XS123
 Basic usage with command line arguments:
 
 ```bash
-npx passport-mrz-renderer \
+npx @passport-mrz/renderer \
   --documentType P \
   --issuingState JPN \
   --documentNumber XS1234567 \
@@ -87,13 +87,13 @@ npx passport-mrz-renderer \
 Load input from JSON file:
 
 ```bash
-npx passport-mrz-renderer --json input.json
+npx @passport-mrz/renderer --json input.json
 ```
 
 Custom output directory and filename with placeholders:
 
 ```bash
-npx passport-mrz-renderer \
+npx @passport-mrz/renderer \
   --json input.json \
   --outdir ./output \
   --filename passport-{documentNumber}.png
@@ -114,7 +114,7 @@ Renders MRZ as a PNG image buffer.
 
 #### input
 
-Type: `Input` (from passport-mrz-builder)
+Type: `Input` (from @passport-mrz/builder)
 
 Passport information object containing document details.
 
@@ -130,7 +130,7 @@ Renders MRZ to an HTML5 Canvas object.
 
 #### input
 
-Type: `Input` (from passport-mrz-builder)
+Type: `Input` (from @passport-mrz/builder)
 
 #### Returns
 
@@ -162,7 +162,7 @@ The output filename supports these placeholders:
 ## Related
 
 - [Passport MRZ Simulator](https://passport-mrz.simochee.net) - Interactive web app using this library
-- [passport-mrz-builder](https://github.com/simochee/passport-mrz/tree/main/packages/builder) - Generate MRZ strings
+- [@passport-mrz/builder](https://github.com/simochee/passport-mrz/tree/main/packages/builder) - Generate MRZ strings
 
 ## License
 
