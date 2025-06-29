@@ -14,6 +14,7 @@
 		"branches": [
 			"main"
 		],
+		"tagFormat": "${name}@${version}",
 		"extends": [
 			"semantic-release-monorepo"
 		],
