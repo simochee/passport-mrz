@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .wrangler/
+.claude/
 .DS_Store
 *.env
 *.local*
