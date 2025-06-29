@@ -3,6 +3,7 @@
  */
 export default {
 	branches: ["main"],
+	// biome-ignore  lint: suspicious/noTemplateCurlyInString
 	tagFormat: "${name}@${version}",
 	extends: ["semantic-release-monorepo"],
 	plugins: [
@@ -13,6 +14,7 @@ export default {
 			"@semantic-release/git",
 			{
 				message:
+					// biome-ignore  lint: suspicious/noTemplateCurlyInString
 					"chore(release): ${nextRelease.gitTag} [skip ci]\n\n${nextRelease.notes}",
 			},
 		],
