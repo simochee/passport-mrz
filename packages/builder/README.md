@@ -12,7 +12,7 @@
 ## Usage
 
 ```js
-import { buildMrzLines } from '@simochee/passport-mrz-builder'
+import { buildMrzLines } from 'passport-mrz-builder'
 
 const [line1, line2] = buildMrzLines({
   documentType: 'P',
@@ -118,7 +118,7 @@ Where:
 ## Related
 
 - [Passport MRZ Simulator](https://passport-mrz.simochee.net) - Interactive web app using this library
-- [@simochee/passport-mrz-renderer](https://github.com/simochee/passport-mrz/tree/main/packages/renderer) - Render MRZ as images
+- [passport-mrz-renderer](https://github.com/simochee/passport-mrz/tree/main/packages/renderer) - Render MRZ as images
 
 ## License
 

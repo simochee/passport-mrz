@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { Input } from "@simochee/passport-mrz-builder";
 import { defineCommand, runMain } from "citty";
+import type { Input } from "passport-mrz-builder";
 import pkg from "../package.json" with { type: "json" };
 import { renderMRZToPNG } from "./index";
 

@@ -1,4 +1,4 @@
-import type { Input } from "@simochee/passport-mrz-builder";
+import type { Input } from "passport-mrz-builder";
 import { describe, expect, it } from "vitest";
 import { renderMRZToCanvas, renderMRZToPNG } from "../index";
 
