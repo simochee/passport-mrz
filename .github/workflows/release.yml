@@ -36,8 +36,11 @@ jobs:
       - name: build
         run: pnpm run -r build
 
-      - name: release
-        run: pnpm -r --workspace-concurrency=1 exec -- npx --no-install semantic-release
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm exec changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
