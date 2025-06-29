@@ -1,0 +1,58 @@
+{
+	"passportInfo": "Passport Information",
+	"copyMRZ": "Copy MRZ",
+	"downloadPNG": "Download PNG",
+	"shareLink": "Copy Share Link",
+	"random": "Random",
+	"reset": "Reset",
+	"fields": {
+		"type": {
+			"label": "Type",
+			"note": "Standard passport is P or PP"
+		},
+		"countryCode": {
+			"label": "Country Code",
+			"note": "ISO 3166-1 alpha-3 code"
+		},
+		"passportNo": {
+			"label": "Passport No.",
+			"note": "7-digit format like AA0000000"
+		},
+		"surname": {
+			"label": "Surname",
+			"note": "No spaces allowed"
+		},
+		"givenNames": {
+			"label": "Given Names",
+			"note": "Separate middle names with spaces"
+		},
+		"nationality": {
+			"label": "Nationality",
+			"note": "ISO 3166-1 alpha-3 code"
+		},
+		"dateOfBirth": {
+			"label": "Date of Birth",
+			"note": "YYMMDD format"
+		},
+		"personalNo": {
+			"label": "Personal No.",
+			"note": "Not set in some countries"
+		},
+		"sex": {
+			"label": "Sex",
+			"note": "M or F or X"
+		},
+		"dateOfExpiry": {
+			"label": "Date of Expiry",
+			"note": "YYMMDD format"
+		}
+	},
+	"footer": {
+		"privacyNotice": "Passport information is personal data. Please handle your input carefully.",
+		"nav": {
+			"english": "English",
+			"sourceCode": "Source Code",
+			"reportIssue": "Report Issue"
+		}
+	}
+}

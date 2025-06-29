@@ -5,13 +5,15 @@ import {
 	LogoNpm,
 	LogoX,
 } from "@carbon/icons-react";
+import { useTranslation } from "react-i18next";
 import logo from "../assets/logo.svg";
 
 export const AppFooter: React.FC = () => {
+	const { t } = useTranslation();
 	const navItems = [
 		{
 			icon: Language,
-			text: "English",
+			text: t("footer.nav.english"),
 			onClick(e: React.MouseEvent<HTMLButtonElement>) {
 				e.preventDefault();
 			},
@@ -23,12 +25,12 @@ export const AppFooter: React.FC = () => {
 		},
 		{
 			icon: LogoGithub,
-			text: "ソースコード",
+			text: t("footer.nav.sourceCode"),
 			href: "https://github.com/simochee/passport-mrz",
 		},
 		{
 			icon: Debug,
-			text: "不具合の報告",
+			text: t("footer.nav.reportIssue"),
 			href: "https://github.com/simochee/passport-mrz/issues/new",
 		},
 		{
@@ -50,9 +52,7 @@ export const AppFooter: React.FC = () => {
 					<img src={logo} alt="MRZsim" width={134} height={32} />
 				</h1>
 				<aside className="flex items-end flex-col gap-3 flex-grow">
-					<p className="text-sm">
-						パスポート情報は個人情報です。入力内容の取り扱いにはご注意ください。
-					</p>
+					<p className="text-sm">{t("footer.privacyNotice")}</p>
 					<nav className="flex gap-x-6 gap-y-2 justify-end max-w-md flex-wrap">
 						{navItems.map(({ icon: Icon, text, href, onClick }) =>
 							href ? (

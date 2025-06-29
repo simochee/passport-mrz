@@ -1,0 +1,58 @@
+{
+	"passportInfo": "パスポート情報",
+	"copyMRZ": "MRZをコピー",
+	"downloadPNG": "PNG をダウンロード",
+	"shareLink": "共有リンクをコピー",
+	"random": "ランダム",
+	"reset": "リセット",
+	"fields": {
+		"type": {
+			"label": "型 / Type",
+			"note": "一般旅券は P もしくは PP"
+		},
+		"countryCode": {
+			"label": "発行国 / Country Code",
+			"note": "ISO 3166-1 の alpha-3 コード"
+		},
+		"passportNo": {
+			"label": "旅券番号 / Passport No.",
+			"note": "AA0000000 形式の7桁"
+		},
+		"surname": {
+			"label": "姓 / Surname",
+			"note": "スペースを含まない"
+		},
+		"givenNames": {
+			"label": "名 / Given Names",
+			"note": "ミドルネームはスペースで区切る"
+		},
+		"nationality": {
+			"label": "国籍 / Nationality",
+			"note": "ISO 3166-1 の alpha-3 コード"
+		},
+		"dateOfBirth": {
+			"label": "生年月日 / Date of birth",
+			"note": "YYMMDD 形式"
+		},
+		"personalNo": {
+			"label": "個人番号 / Personal No.",
+			"note": "国によっては設定されません"
+		},
+		"sex": {
+			"label": "性別 / Sex",
+			"note": "M または F または X"
+		},
+		"dateOfExpiry": {
+			"label": "有効期限満了日 / Date of expiry",
+			"note": "YYMMDD 形式"
+		}
+	},
+	"footer": {
+		"privacyNotice": "パスポート情報は個人情報です。入力内容の取り扱いにはご注意ください。",
+		"nav": {
+			"english": "English",
+			"sourceCode": "ソースコード",
+			"reportIssue": "不具合の報告"
+		}
+	}
+}

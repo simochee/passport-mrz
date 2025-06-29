@@ -1,5 +1,6 @@
 import { Download } from "@carbon/icons-react";
 import { renderMRZToCanvas } from "@passport-mrz/renderer";
+import { useTranslation } from "react-i18next";
 import type { PassportInput } from "../types/passport";
 import { BaseButton } from "./BaseButton";
 
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export const ExportButton: React.FC<Props> = ({ input }) => {
+	const { t } = useTranslation();
 	const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
 		e.preventDefault();
 
@@ -44,7 +46,7 @@ export const ExportButton: React.FC<Props> = ({ input }) => {
 
 	return (
 		<BaseButton icon={Download} style="fill" onClick={handleClick}>
-			PNG をダウンロード
+			{t("downloadPNG")}
 		</BaseButton>
 	);
 };

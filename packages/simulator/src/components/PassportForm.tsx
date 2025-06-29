@@ -2,6 +2,7 @@ import { Copy, Reset } from "@carbon/icons-react";
 import { buildMrzLines } from "@passport-mrz/builder";
 import { useForm, useStore } from "@tanstack/react-form";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { DEFAULT_VALUES } from "../hooks/useInitialValues";
 import type { PassportInput } from "../types/passport";
 import { persist } from "../utils/persistence";
@@ -17,6 +18,7 @@ type Props = {
 };
 
 export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
+	const { t } = useTranslation();
 	const form = useForm({
 		defaultValues,
 	});
@@ -65,17 +67,17 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 		<div className="grid gap-9">
 			<div className="flex gap-8 justify-between pb-4 border-b border-slate-200 items-end">
 				<h2 className="h-8 place-content-center text-slate-800 shrink-0">
-					パスポート情報
+					{t("passportInfo")}
 				</h2>
 				<div className="flex flex-wrap gap-3 justify-end">
 					<BaseButton icon={Copy} style="fill" onClick={copy}>
-						MRZをコピー
+						{t("copyMRZ")}
 					</BaseButton>
 					<ExportButton input={values} />
 					<ShareButton input={values} />
 					<FakerButton onClick={setValues} />
 					<BaseButton icon={Reset} style="outline" onClick={reset}>
-						リセット
+						{t("reset")}
 					</BaseButton>
 				</div>
 			</div>
@@ -83,8 +85,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="type">
 					{(field) => (
 						<TextField
-							label="型 / Type"
-							note="一般旅券は P もしくは PP"
+							label={t("fields.type.label")}
+							note={t("fields.type.note")}
 							field={field}
 						/>
 					)}
@@ -92,8 +94,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="countryCode">
 					{(field) => (
 						<TextField
-							label="発行国 / Country Code"
-							note="ISO 3166-1 の alpha-3 コード"
+							label={t("fields.countryCode.label")}
+							note={t("fields.countryCode.note")}
 							field={field}
 						/>
 					)}
@@ -101,8 +103,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="passportNo">
 					{(field) => (
 						<TextField
-							label="旅券番号 / Passport No."
-							note="AA0000000 形式の7桁"
+							label={t("fields.passportNo.label")}
+							note={t("fields.passportNo.note")}
 							field={field}
 						/>
 					)}
@@ -110,8 +112,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="surname">
 					{(field) => (
 						<TextField
-							label="姓 / Surname"
-							note="スペースを含まない"
+							label={t("fields.surname.label")}
+							note={t("fields.surname.note")}
 							field={field}
 						/>
 					)}
@@ -119,8 +121,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="givenNames">
 					{(field) => (
 						<TextField
-							label="名 / Given Names"
-							note="ミドルネームはスペースで区切る"
+							label={t("fields.givenNames.label")}
+							note={t("fields.givenNames.note")}
 							field={field}
 						/>
 					)}
@@ -128,8 +130,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="nationality">
 					{(field) => (
 						<TextField
-							label="国籍 / Nationality"
-							note="ISO 3166-1 の alpha-3 コード"
+							label={t("fields.nationality.label")}
+							note={t("fields.nationality.note")}
 							field={field}
 						/>
 					)}
@@ -137,8 +139,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="dateOfBirth">
 					{(field) => (
 						<TextField
-							label="生年月日 / Date of birth"
-							note="YYMMDD 形式"
+							label={t("fields.dateOfBirth.label")}
+							note={t("fields.dateOfBirth.note")}
 							field={field}
 						/>
 					)}
@@ -146,8 +148,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="personalNo">
 					{(field) => (
 						<TextField
-							label="個人番号 / Personal No."
-							note="国によっては設定されません"
+							label={t("fields.personalNo.label")}
+							note={t("fields.personalNo.note")}
 							field={field}
 						/>
 					)}
@@ -155,8 +157,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="sex">
 					{(field) => (
 						<TextField
-							label="性別 / Sex"
-							note="M または F または X"
+							label={t("fields.sex.label")}
+							note={t("fields.sex.note")}
 							field={field}
 						/>
 					)}
@@ -164,8 +166,8 @@ export const PassportForm: React.FC<Props> = ({ defaultValues, onChange }) => {
 				<form.Field name="dateOfExpiry">
 					{(field) => (
 						<TextField
-							label="有効期限満了日 / Date of expiry"
-							note="YYMMDD 形式"
+							label={t("fields.dateOfExpiry.label")}
+							note={t("fields.dateOfExpiry.note")}
 							field={field}
 						/>
 					)}
